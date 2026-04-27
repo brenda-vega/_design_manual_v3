@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brenda Vega · Design Manual v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════ */
+:root {
+  --prim-rose-100: #f9cccb;
+  --prim-rose-600: #c97f7d;
+  --prim-rose-700: #a85e5c;
+  --prim-slate-100: #e3e5e4;
+  --prim-slate-500: #525d69;
+  --prim-slate-800: #2d2d2d;
+  --prim-green: #7aad7a;
+  --prim-amber: #e5b97a;
+  --mono: 'DM Mono', monospace;
+}
+
+[data-theme="light"] {
+  --bg: #e3e5e4;
+  --surface: rgba(255,255,255,0.45);
+  --surface2: rgba(255,255,255,0.72);
+  --surface-solid: #f4f4f3;
+  --text: #2d2d2d;
+  --text2: #525d69;
+  --text3: rgba(82,93,105,0.5);
+  --accent: #f9cccb;
+  --accent-dark: #c97f7d;
+  --accent-tint: rgba(249,204,203,0.35);
+  --border: rgba(45,45,45,0.1);
+  --border2: rgba(45,45,45,0.18);
+  --border-accent: #c97f7d;
+  --success: #7aad7a;
+  --warning: #e5b97a;
+  --error: #c97f7d;
+  --success-bg: rgba(122,173,122,0.12);
+  --warning-bg: rgba(229,185,122,0.12);
+  --error-bg: rgba(201,127,125,0.12);
+  --success-text: #4a8a4a;
+  --warning-text: #a07030;
+  --error-text: #a85e5c;
+  --blue: #3b82f6;
+  --blue-bg: rgba(59,130,246,0.1);
+  --blue-text: #2563eb;
+  --shadow: rgba(45,45,45,0.1);
+  --formula-bg: rgba(249,204,203,0.12);
+  --formula-border: #c97f7d;
+  --formula-text: #a85e5c;
+  --header-bg: rgba(227,229,228,0.9);
+  --nav-active-bg: rgba(201,127,125,0.1);
+  --nav-hover-bg: rgba(45,45,45,0.04);
+  --col-cell-bg: rgba(201,127,125,0.2);
+  --col-cell-border: rgba(201,127,125,0.35);
+  --table-row-hover: rgba(45,45,45,0.02);
+  --code-bg: rgba(45,45,45,0.06);
+  --code-text: #a85e5c;
+  --swatch-border: rgba(45,45,45,0.12);
+}
+
+[data-theme="dark"] {
+  --bg: #0f1010;
+  --surface: #171918;
+  --surface2: #1f2120;
+  --surface-solid: #1f2120;
+  --text: #e8e6e3;
+  --text2: #8a8f8c;
+  --text3: rgba(138,143,140,0.5);
+  --accent: #c97f7d;
+  --accent-dark: #f9cccb;
+  --accent-tint: rgba(201,127,125,0.15);
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --border-accent: #c97f7d;
+  --success: #5a9e5a;
+  --warning: #c49050;
+  --error: #c97f7d;
+  --success-bg: rgba(90,158,90,0.12);
+  --warning-bg: rgba(196,144,80,0.12);
+  --error-bg: rgba(201,127,125,0.12);
+  --success-text: #7aad7a;
+  --warning-text: #e5b97a;
+  --error-text: #f9cccb;
+  --blue: #60a5fa;
+  --blue-bg: rgba(96,165,250,0.1);
+  --blue-text: #93c5fd;
+  --shadow: rgba(0,0,0,0.4);
+  --formula-bg: rgba(201,127,125,0.08);
+  --formula-border: #c97f7d;
+  --formula-text: #f9cccb;
+  --header-bg: rgba(15,16,16,0.92);
+  --nav-active-bg: rgba(201,127,125,0.12);
+  --nav-hover-bg: rgba(255,255,255,0.04);
+  --col-cell-bg: rgba(201,127,125,0.18);
+  --col-cell-border: rgba(201,127,125,0.3);
+  --table-row-hover: rgba(255,255,255,0.02);
+  --code-bg: rgba(255,255,255,0.06);
+  --code-text: #f9cccb;
+  --swatch-border: rgba(255,255,255,0.12);
+}
+
+/* ═══════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background .25s, color .25s;
+}
+
+/* HEADER */
+header {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--header-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border2);
+  padding: 0 28px; height: 52px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  transition: background .25s;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-wordmark { font-size: 12px; font-weight: 600; letter-spacing: -.01em; color: var(--text); }
+.header-div { width: 1px; height: 16px; background: var(--border2); }
+.header-doc { font-size: 11px; color: var(--text2); }
+.header-badge { font-family: var(--mono); font-size: 9.5px; padding: 2px 8px; border-radius: 100px; border: 0.5px solid var(--border2); color: var(--text3); background: var(--surface2); }
+.theme-pill { display: flex; background: var(--surface2); border: 0.5px solid var(--border2); border-radius: 100px; padding: 3px; gap: 2px; }
+.theme-btn { font-size: 10px; font-weight: 500; font-family: 'Poppins', sans-serif; padding: 3px 11px; border-radius: 100px; border: none; cursor: pointer; color: var(--text2); background: transparent; transition: all .2s; letter-spacing: .02em; }
+.theme-btn.active { background: var(--accent-dark); color: var(--bg); font-weight: 600; }
+
+/* LAYOUT */
+.layout { display: flex; min-height: calc(100vh - 52px); }
+
+/* NAV */
+nav {
+  width: 228px; flex-shrink: 0;
+  padding: 20px 0 40px;
+  border-right: 0.5px solid var(--border2);
+  background: var(--surface);
+  position: sticky; top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+  transition: background .25s;
+}
+nav::-webkit-scrollbar { width: 3px; }
+nav::-webkit-scrollbar-track { background: transparent; }
+nav::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+.nav-group-label { font-size: 9.5px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--text3); padding: 16px 20px 5px; }
+nav a { display: flex; align-items: center; gap: 9px; padding: 7px 20px; font-size: 12.5px; color: var(--text2); text-decoration: none; border-left: 2px solid transparent; transition: all .15s; cursor: pointer; }
+nav a:hover { color: var(--text); background: var(--nav-hover-bg); }
+nav a.active { color: var(--accent-dark); border-left-color: var(--accent); background: var(--nav-active-bg); font-weight: 500; }
+.nav-icon { font-size: 13px; width: 17px; text-align: center; }
+
+/* MAIN */
+main { flex: 1; padding: 40px 44px; max-width: 880px; overflow-x: hidden; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* SECTION HEADER */
+.section-header { margin-bottom: 36px; padding-bottom: 22px; border-bottom: 0.5px solid var(--border2); }
+.section-eyebrow { font-size: 9.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 7px; }
+h2 { font-size: 22px; font-weight: 700; letter-spacing: -.025em; color: var(--text); line-height: 1.2; }
+.section-desc { font-size: 13px; color: var(--text2); margin-top: 8px; line-height: 1.65; }
+
+/* BLOCK */
+.block { margin-bottom: 36px; }
+.block-title { font-size: 10px; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.block-title::after { content: ''; flex: 1; height: 0.5px; background: var(--border2); }
+
+/* FORMULA */
+.formula { background: var(--formula-bg); border-left: 2px solid var(--formula-border); border-radius: 0 8px 8px 0; padding: 13px 18px; font-family: var(--mono); font-size: 12.5px; color: var(--formula-text); margin: 12px 0; line-height: 1.9; }
+
+/* NOTE */
+.note { font-size: 12px; color: var(--text2); line-height: 1.65; margin-top: 6px; }
+
+/* HIGHLIGHT */
+.highlight { background: var(--surface2); border: 0.5px solid var(--border2); border-radius: 10px; padding: 16px 20px; margin: 12px 0; transition: background .25s; }
+.highlight-rule { font-size: 14.5px; font-weight: 600; color: var(--text); margin-bottom: 6px; line-height: 1.4; }
+
+/* TABLES */
+.table-wrap { border: 0.5px solid var(--border2); border-radius: 10px; overflow: hidden; margin: 12px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; padding: 8px 14px; font-size: 9.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); background: var(--surface2); border-bottom: 0.5px solid var(--border2); }
+td { padding: 9px 14px; border-bottom: 0.5px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.5; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--table-row-hover); }
+td.mono { font-family: var(--mono); font-size: 11px; color: var(--accent); }
+td.muted { color: var(--text2); }
+
+/* TAGS */
+.tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 100px; font-weight: 600; border: 0.5px solid; white-space: nowrap; }
+.tag-blue { background: var(--blue-bg); color: var(--blue-text); border-color: rgba(59,130,246,0.25); }
+.tag-green { background: var(--success-bg); color: var(--success-text); border-color: rgba(122,173,122,0.25); }
+.tag-amber { background: var(--warning-bg); color: var(--warning-text); border-color: rgba(229,185,122,0.25); }
+.tag-red { background: var(--error-bg); color: var(--error-text); border-color: rgba(201,127,125,0.25); }
+.tag-rose { background: var(--accent-tint); color: var(--accent-dark); border-color: rgba(201,127,125,0.3); }
+
+/* GRIDS */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 12px 0; }
+.card-block { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 10px; padding: 14px 16px; transition: background .25s; }
+.card-block:hover { border-color: var(--border2); }
+.card-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+.card-val { font-size: 12.5px; color: var(--text); }
+
+/* BREAKPOINT BLOCKS */
+.bp-block { border: 0.5px solid var(--border2); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+.bp-header { padding: 11px 18px; background: var(--surface2); border-bottom: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.bp-name { font-size: 12.5px; font-weight: 600; color: var(--text); }
+.bp-range { font-size: 10.5px; font-family: var(--mono); color: var(--text3); }
+.bp-body { padding: 14px 18px; background: var(--surface); }
+.bp-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 0.5px solid var(--border); font-size: 12px; }
+.bp-row:last-child { border-bottom: none; }
+.bp-key { color: var(--text2); }
+.bp-val { font-family: var(--mono); color: var(--accent); font-weight: 500; font-size: 11px; }
+.col-vis { display: flex; gap: 4px; margin-top: 12px; }
+.col-cell { height: 22px; border-radius: 3px; background: var(--col-cell-bg); border: 0.5px solid var(--col-cell-border); flex: 1; }
+.col-gutter { width: 4px; flex: none; }
+
+/* MOTION */
+.motion-group { border: 0.5px solid var(--border2); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
+.motion-group-header { padding: 8px 16px; background: var(--surface2); font-size: 9.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); border-bottom: 0.5px solid var(--border); }
+.motion-row { display: grid; grid-template-columns: 150px 210px 1fr; gap: 12px; align-items: start; padding: 10px 16px; border-bottom: 0.5px solid var(--border); font-size: 12px; background: var(--surface); transition: background .25s; }
+.motion-row:last-child { border-bottom: none; }
+.motion-row:hover { background: var(--surface2); }
+.motion-label { font-weight: 500; color: var(--text); }
+.motion-val { font-family: var(--mono); color: var(--accent); font-size: 10.5px; line-height: 1.6; }
+.motion-use { color: var(--text2); line-height: 1.55; }
+
+/* FLOW */
+.flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.flow-arrow { color: var(--text3); font-size: 14px; }
+
+/* CALLOUT */
+.callout { display: flex; gap: 12px; padding: 13px 16px; background: var(--accent-tint); border: 0.5px solid var(--border-accent); border-radius: 8px; margin: 12px 0; align-items: flex-start; }
+.callout-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.callout-body { font-size: 11.5px; color: var(--text2); line-height: 1.6; }
+.callout-body strong { color: var(--text); font-weight: 600; }
+
+/* CODE BLOCK */
+.code-block {
+  background: var(--code-bg);
+  border: 0.5px solid var(--border2);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text2);
+  line-height: 1.85;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+.code-block .kw { color: var(--accent); font-weight: 500; }
+.code-block .str { color: var(--success-text); }
+.code-block .cm { color: var(--text3); font-style: italic; }
+.code-block .num { color: var(--blue-text); }
+.code-block .prop { color: var(--accent-dark); }
+.code-block .header-line { color: var(--text3); margin-bottom: 8px; padding-bottom: 8px; border-bottom: 0.5px solid var(--border2); display: block; }
+
+/* CODE TAB SWITCHER */
+.code-tabs { display: flex; gap: 0; margin-bottom: -1px; position: relative; z-index: 1; }
+.code-tab { font-size: 11px; font-family: var(--mono); padding: 6px 14px; border-radius: 8px 8px 0 0; border: 0.5px solid var(--border2); border-bottom: none; cursor: pointer; color: var(--text3); background: var(--surface); transition: all .15s; margin-right: 2px; }
+.code-tab.active { color: var(--text); background: var(--code-bg); border-color: var(--border2); }
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .layout { flex-direction: column; }
+  nav { width: 100%; height: auto; position: relative; top: auto; display: flex; flex-wrap: wrap; padding: 12px; gap: 4px; border-right: none; border-bottom: 0.5px solid var(--border2); }
+  nav a { padding: 5px 12px; border-left: none; border-radius: 100px; font-size: 12px; }
+  nav a.active { border-left: none; }
+  .nav-group-label { display: none; }
+  main { padding: 24px 20px; }
+  .motion-row { grid-template-columns: 1fr; gap: 4px; }
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+  h2 { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <span class="header-wordmark">Brenda Vega</span>
+    <div class="header-div"></div>
+    <span class="header-doc">Design Manual</span>
+    <span class="header-badge">v3.0</span>
+  </div>
+  <div class="theme-pill">
+    <button class="theme-btn" id="btnLight" onclick="setTheme('light')">Light</button>
+    <button class="theme-btn active" id="btnDark" onclick="setTheme('dark')">Dark</button>
+  </div>
+</header>
+
+<div class="layout">
+<nav id="sidebar">
+  <div class="nav-group-label">Fundamentos</div>
+  <a class="active" onclick="show('foundations',this)"><span class="nav-icon">🎨</span>Visual Foundations</a>
+  <div class="nav-group-label">Estrategia</div>
+  <a onclick="show('thinking',this)"><span class="nav-icon">🧠</span>Product Thinking</a>
+  <div class="nav-group-label">Sistema</div>
+  <a onclick="show('naming',this)"><span class="nav-icon">🏷</span>Naming en Figma</a>
+  <a onclick="show('sizes',this)"><span class="nav-icon">📐</span>Sizes & Spacing</a>
+  <a onclick="show('grid',this)"><span class="nav-icon">⬛</span>Grid & Breakpoints</a>
+  <a onclick="show('motion',this)"><span class="nav-icon">✦</span>Motion Tokens</a>
+  <div class="nav-group-label">Componentes</div>
+  <a onclick="show('components',this)"><span class="nav-icon">🧩</span>UI Components</a>
+  <div class="nav-group-label">Calidad</div>
+  <a onclick="show('accessibility',this)"><span class="nav-icon">♿</span>WCAG 2.2</a>
+  <a onclick="show('ui',this)"><span class="nav-icon">🎯</span>UI Principles</a>
+  <a onclick="show('validation',this)"><span class="nav-icon">✓</span>Validación</a>
+  <div class="nav-group-label">Entrega</div>
+  <a onclick="show('devdocs',this)"><span class="nav-icon">👩‍💻</span>Dev Handoff</a>
+  <a onclick="show('export',this)"><span class="nav-icon">📦</span>Exportación</a>
+</nav>
+<main>
+
+<!-- ══ VISUAL FOUNDATIONS ══ -->
+<div id="foundations" class="section active">
+  <div class="section-header">
+    <div class="section-eyebrow">00 — Fundamentos</div>
+    <h2>Visual Foundations</h2>
+    <div class="section-desc">La base del sistema. Todo componente y decisión se deriva de estos valores.</div>
+  </div>
+
+  <!-- COLOR PALETA -->
+  <div class="block">
+    <div class="block-title">Paleta de color</div>
+    <div style="display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:1.25rem">
+      <div style="flex:1;min-width:90px">
+        <div style="height:64px;border-radius:12px;background:#2d2d2d;border:0.5px solid var(--swatch-border);margin-bottom:.5rem;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 60%)"></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--text2)">Text primary</div>
+        <div style="font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--text)">#2D2D2D</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--text</div>
+      </div>
+      <div style="flex:1;min-width:90px">
+        <div style="height:64px;border-radius:12px;background:#525d69;border:0.5px solid var(--swatch-border);margin-bottom:.5rem;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 60%)"></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--text2)">Text secondary</div>
+        <div style="font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--text)">#525D69</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--text2</div>
+      </div>
+      <div style="flex:1;min-width:90px">
+        <div style="height:64px;border-radius:12px;background:#f9cccb;border:0.5px solid var(--swatch-border);margin-bottom:.5rem;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 60%)"></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--text2)">Accent (light)</div>
+        <div style="font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--text)">#F9CCCB</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--prim-rose-100</div>
+      </div>
+      <div style="flex:1;min-width:90px">
+        <div style="height:64px;border-radius:12px;background:#c97f7d;border:0.5px solid var(--swatch-border);margin-bottom:.5rem;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 60%)"></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--text2)">Accent dark</div>
+        <div style="font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--text)">#C97F7D</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--prim-rose-600</div>
+      </div>
+      <div style="flex:1;min-width:90px">
+        <div style="height:64px;border-radius:12px;background:#e3e5e4;border:0.5px solid var(--swatch-border);margin-bottom:.5rem;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 60%)"></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--text2)">Background</div>
+        <div style="font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--text)">#E3E5E4</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--bg (light)</div>
+      </div>
+      <div style="flex:1;min-width:90px">
+        <div style="height:64px;border-radius:12px;background:#0f1010;border:0.5px solid var(--swatch-border);margin-bottom:.5rem;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 60%)"></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--text2)">Background</div>
+        <div style="font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--text)">#0F1010</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--bg (dark)</div>
+      </div>
+    </div>
+
+    <!-- Semánticos -->
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:600;margin-bottom:.6rem">Colores semánticos</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:.65rem;padding:.6rem .85rem;border-radius:8px;background:var(--success-bg);border:0.5px solid rgba(122,173,122,0.25)">
+        <div style="width:20px;height:20px;border-radius:50%;background:var(--success);flex-shrink:0"></div>
+        <div><div style="font-size:10.5px;font-weight:500;color:var(--text)">Success</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--success</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.65rem;padding:.6rem .85rem;border-radius:8px;background:var(--warning-bg);border:0.5px solid rgba(229,185,122,0.25)">
+        <div style="width:20px;height:20px;border-radius:50%;background:var(--warning);flex-shrink:0"></div>
+        <div><div style="font-size:10.5px;font-weight:500;color:var(--text)">Warning</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--warning</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.65rem;padding:.6rem .85rem;border-radius:8px;background:var(--error-bg);border:0.5px solid rgba(201,127,125,0.25)">
+        <div style="width:20px;height:20px;border-radius:50%;background:var(--error);flex-shrink:0"></div>
+        <div><div style="font-size:10.5px;font-weight:500;color:var(--text)">Error</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3)">--error</div></div>
+      </div>
+    </div>
+
+    <!-- Dark mode logic -->
+    <div class="callout">
+      <span class="callout-icon">⇄</span>
+      <div class="callout-body"><strong>Inversión de roles en dark mode:</strong> rose-100 (#F9CCCB) pasa a ser label/texto de énfasis. rose-600 (#C97F7D) pasa a ser el color interactivo principal. Las superficies cambian de rgba blanco a rgba blanco con opacidad mínima (5–9%). Los bordes invierten de rgba negro a rgba blanco.</div>
+    </div>
+  </div>
+
+  <!-- TIPOGRAFÍA VISUAL -->
+  <div class="block">
+    <div class="block-title">Escala tipográfica visual</div>
+    <div style="display:flex;flex-direction:column;gap:.6rem">
+      <div style="display:flex;align-items:baseline;gap:1.5rem;padding:.85rem 1.1rem;background:var(--surface);border:0.5px solid var(--border);border-radius:12px">
+        <div style="min-width:170px"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.2rem">Display / Hero</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">Poppins 700 · 48px<br>ls −0.03em · lh 1.08</div></div>
+        <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:-.03em;color:var(--text);line-height:1.08">Portfolio</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:1.5rem;padding:.85rem 1.1rem;background:var(--surface);border:0.5px solid var(--border);border-radius:12px">
+        <div style="min-width:170px"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.2rem">Heading 1</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">Poppins 600 · 32px<br>ls −0.02em · lh 1.2</div></div>
+        <div style="font-family:'Poppins',sans-serif;font-size:1.8rem;font-weight:600;letter-spacing:-.02em;color:var(--text)">Sección principal</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:1.5rem;padding:.85rem 1.1rem;background:var(--surface);border:0.5px solid var(--border);border-radius:12px">
+        <div style="min-width:170px"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.2rem">Heading 2</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">Poppins 500 · 24px<br>ls −0.02em</div></div>
+        <div style="font-family:'Poppins',sans-serif;font-size:1.35rem;font-weight:500;letter-spacing:-.02em;color:var(--text)">Nombre del proyecto</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:1.5rem;padding:.85rem 1.1rem;background:var(--surface);border:0.5px solid var(--border);border-radius:12px">
+        <div style="min-width:170px"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.2rem">Body</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">Poppins 400 · 15px<br>lh 1.75</div></div>
+        <div style="font-family:'Poppins',sans-serif;font-size:15px;color:var(--text2);line-height:1.75">Texto de cuerpo para descripciones y contenido general.</div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:1.5rem;padding:.85rem 1.1rem;background:var(--surface);border:0.5px solid var(--border);border-radius:12px">
+        <div style="min-width:170px"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.2rem">Label / Overline</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">Poppins 500 · 11px<br>ls 0.12em · uppercase</div></div>
+        <div style="display:flex;flex-direction:column;gap:.35rem"><span style="font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);font-weight:500">LABEL UPPERCASE</span><span style="font-family:'Poppins',sans-serif;font-size:12px;color:var(--text2)">Texto de soporte</span></div>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:1.5rem;padding:.85rem 1.1rem;background:var(--surface);border:0.5px solid var(--border);border-radius:12px">
+        <div style="min-width:170px"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.2rem">Mono / Code</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">DM Mono 400/500<br>10–12px · tokens, specs</div></div>
+        <div style="display:flex;flex-direction:column;gap:.3rem"><span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent)">--color-accent-dark: #C97F7D</span><span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--text3)">v3.0 · stable</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPACING VISUAL -->
+  <div class="block">
+    <div class="block-title">Espaciado visual — base 8</div>
+    <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:4px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">4px</div><div style="font-size:9px;color:var(--text3)">xs</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:8px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">8px</div><div style="font-size:9px;color:var(--text3)">sm</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:12px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">12px</div><div style="font-size:9px;color:var(--text3)">md</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:16px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">16px</div><div style="font-size:9px;color:var(--text3)">lg</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:24px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">24px</div><div style="font-size:9px;color:var(--text3)">xl</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:32px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">32px</div><div style="font-size:9px;color:var(--text3)">2xl</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:48px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">48px</div><div style="font-size:9px;color:var(--text3)">3xl</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem"><div style="background:var(--accent-tint);border:0.5px solid var(--accent-dark);border-radius:3px;width:28px;height:64px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">64px</div><div style="font-size:9px;color:var(--text3)">4xl</div></div>
+    </div>
+  </div>
+
+  <!-- BORDER RADIUS VISUAL -->
+  <div class="block">
+    <div class="block-title">Border radius</div>
+    <div style="display:flex;gap:1.25rem;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem"><div style="width:52px;height:52px;background:var(--surface2);border:0.5px solid var(--border2);border-radius:0"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">0</div><div style="font-size:9px;color:var(--text3)">none</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem"><div style="width:52px;height:52px;background:var(--surface2);border:0.5px solid var(--border2);border-radius:4px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">4px</div><div style="font-size:9px;color:var(--text3)">sm</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem"><div style="width:52px;height:52px;background:var(--surface2);border:0.5px solid var(--border2);border-radius:8px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">8px</div><div style="font-size:9px;color:var(--text3)">md</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem"><div style="width:52px;height:52px;background:var(--surface2);border:0.5px solid var(--border2);border-radius:12px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">12px</div><div style="font-size:9px;color:var(--text3)">lg</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem"><div style="width:52px;height:52px;background:var(--surface2);border:0.5px solid var(--border2);border-radius:18px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">18px</div><div style="font-size:9px;color:var(--text3)">xl</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem"><div style="width:52px;height:52px;background:var(--surface2);border:0.5px solid var(--border2);border-radius:100px"></div><div style="font-family:var(--mono);font-size:9.5px;color:var(--accent-dark);font-weight:500">9999</div><div style="font-size:9px;color:var(--text3)">pill</div></div>
+    </div>
+  </div>
+
+  <!-- SOMBRAS -->
+  <div class="block">
+    <div class="block-title">Sombras</div>
+    <div style="display:flex;gap:1.25rem;flex-wrap:wrap">
+      <div style="padding:1rem 1.25rem;background:var(--surface-solid);border-radius:12px;border:0.5px solid var(--border);box-shadow:0 1px 3px rgba(45,45,45,0.08);min-width:100px;flex:1"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.25rem">xs</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">0 1px 3px<br>shadow/8%</div></div>
+      <div style="padding:1rem 1.25rem;background:var(--surface-solid);border-radius:12px;border:0.5px solid var(--border);box-shadow:0 4px 12px rgba(45,45,45,0.1);min-width:100px;flex:1"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.25rem">sm</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">0 4px 12px<br>shadow/10%</div></div>
+      <div style="padding:1rem 1.25rem;background:var(--surface-solid);border-radius:12px;border:0.5px solid var(--border);box-shadow:0 8px 24px rgba(45,45,45,0.12);min-width:100px;flex:1"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.25rem">md</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">0 8px 24px<br>shadow/12%</div></div>
+      <div style="padding:1rem 1.25rem;background:var(--surface-solid);border-radius:12px;border:0.5px solid var(--border);box-shadow:0 5px 18px rgba(201,127,125,0.28);min-width:100px;flex:1"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.25rem">accent</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">0 5px 18px<br>accent/28%</div></div>
+      <div style="padding:1rem 1.25rem;background:var(--surface-solid);border-radius:12px;border:0.5px solid var(--border);box-shadow:0 0 0 3px rgba(82,93,105,0.1);min-width:100px;flex:1"><div style="font-size:10.5px;font-weight:600;color:var(--text);margin-bottom:.25rem">focus</div><div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.7">0 0 0 3px<br>muted/10%</div></div>
+    </div>
+  </div>
+
+  <!-- ICONOGRAFÍA -->
+  <div class="block">
+    <div class="block-title">Iconografía</div>
+    <div style="font-size:11px;color:var(--text2);margin-bottom:.85rem">Outline · stroke 1.5px · 18×18px render · touch target <strong style="color:var(--accent-dark)">44×44px mín</strong></div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span style="font-size:9.5px;color:var(--text3)">home</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span style="font-size:9.5px;color:var(--text3)">user</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span style="font-size:9.5px;color:var(--text3)">work</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span style="font-size:9.5px;color:var(--text3)">mail</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span style="font-size:9.5px;color:var(--text3)">location</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg><span style="font-size:9.5px;color:var(--text3)">link</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span style="font-size:9.5px;color:var(--text3)">arrow</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:9.5px;color:var(--text3)">check</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:.75rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;min-width:60px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span style="font-size:9.5px;color:var(--text3)">plus</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:.85rem 1rem;background:var(--surface);border:0.5px solid var(--border);border-radius:10px">
+      <div style="font-size:11.5px;color:var(--text2)"><strong style="color:var(--text)">Tamaño render</strong> &nbsp;18×18px</div>
+      <div style="font-size:11.5px;color:var(--text2)"><strong style="color:var(--text)">Touch target</strong> &nbsp;44×44px</div>
+      <div style="font-size:11.5px;color:var(--text2)"><strong style="color:var(--text)">Stroke</strong> &nbsp;1.5px, linecap round</div>
+      <div style="font-size:11.5px;color:var(--text2)"><strong style="color:var(--text)">Fill</strong> &nbsp;none (outline only)</div>
+      <div style="font-size:11.5px;color:var(--text2)"><strong style="color:var(--text)">Color default</strong> &nbsp;--text2</div>
+      <div style="font-size:11.5px;color:var(--text2)"><strong style="color:var(--text)">Librería</strong> &nbsp;Lucide / Heroicons</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUCT THINKING ══ -->
+<div id="thinking" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">01 — Estrategia</div>
+    <h2>Product Thinking</h2>
+    <div class="section-desc">Responde esto antes de tocar Figma. Si no puedes contestarlo, no diseñes aún.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">5 preguntas obligatorias</div>
+    <div class="grid2">
+      <div class="card-block"><div class="card-label">¿Quién es el usuario?</div><div class="card-val">Perfil, contexto, nivel técnico</div></div>
+      <div class="card-block"><div class="card-label">¿Qué problema REAL tiene?</div><div class="card-val">No feature. Problema de fondo</div></div>
+      <div class="card-block"><div class="card-label">¿Qué quiere lograr?</div><div class="card-val">Job to be done</div></div>
+      <div class="card-block"><div class="card-label">¿Qué lo frena hoy?</div><div class="card-val">Fricción actual</div></div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-title">Fórmula de decisión</div>
+    <div class="formula">Voy a cambiar [X]<br>para lograr [Y]<br>porque el usuario [Z]</div>
+    <div class="note">Ejemplo: Voy a usar iconos filled en navegación / para indicar estado activo / porque el usuario necesita feedback claro de ubicación sin tener que leer el label.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Framework express</div>
+    <div class="flow">
+      <span class="tag tag-blue">Problema</span><span class="flow-arrow">→</span>
+      <span class="tag tag-blue">Usuario</span><span class="flow-arrow">→</span>
+      <span class="tag tag-blue">Decisión</span><span class="flow-arrow">→</span>
+      <span class="tag tag-blue">UI</span><span class="flow-arrow">→</span>
+      <span class="tag tag-green">Resultado esperado</span>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-title">Regla base</div>
+    <div class="highlight">
+      <div class="highlight-rule">Ningún elemento visual existe sin función.</div>
+      <div class="note">Icono, color, sombra, espacio — todo tiene razón de existir. Si no puedes defenderlo, quítalo.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAMING ══ -->
+<div id="naming" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">02 — Sistema</div>
+    <h2>Naming en Figma</h2>
+    <div class="section-desc">Slash = jerarquía. Elige un idioma y no lo mezcles en el mismo sistema.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Convención general</div>
+    <div class="formula">Categoría/Componente/Variante</div>
+    <div class="table-wrap"><table>
+      <tr><th>Nivel</th><th>Formato</th><th>Ejemplo</th></tr>
+      <tr><td>Página</td><td class="mono">Emoji + nombre</td><td class="muted">🧩 Components · 🎨 Styles</td></tr>
+      <tr><td>Frame / sección</td><td class="mono">MAYÚSCULAS</td><td class="muted">NAVIGATION · BUTTONS</td></tr>
+      <tr><td>Componente base</td><td class="mono">PascalCase</td><td class="muted">Button · InputField · Modal</td></tr>
+      <tr><td>Variante</td><td class="mono">slash separado</td><td class="muted">Button/Primary · Button/Ghost</td></tr>
+      <tr><td>Layer / capa</td><td class="mono">kebab-case</td><td class="muted">icon-left · label-text · bg-fill</td></tr>
+      <tr><td>Color token</td><td class="mono">color/grupo/nombre</td><td class="muted">color/brand/primary · color/text/disabled</td></tr>
+      <tr><td>Spacing token</td><td class="mono">spacing/valor</td><td class="muted">spacing/4 · spacing/16 · spacing/24</td></tr>
+      <tr><td>Tipografía</td><td class="mono">text/rol/size</td><td class="muted">text/heading/xl · text/body/sm</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Naming de estados</div>
+    <div class="formula">Componente / Estado / Tamaño</div>
+    <div class="table-wrap"><table>
+      <tr><th>State</th><th>Nombre en Figma</th></tr>
+      <tr><td>Por defecto</td><td class="mono">Default</td></tr>
+      <tr><td>Al pasar el cursor</td><td class="mono">Hover</td></tr>
+      <tr><td>Presionado</td><td class="mono">Pressed / Active</td></tr>
+      <tr><td>Enfocado</td><td class="mono">Focused</td></tr>
+      <tr><td>Desactivado</td><td class="mono">Disabled</td></tr>
+      <tr><td>Error</td><td class="mono">Error</td></tr>
+      <tr><td>Éxito</td><td class="mono">Success</td></tr>
+      <tr><td>Cargando</td><td class="mono">Loading</td></tr>
+    </table></div>
+    <div class="note">Ejemplo: <span style="font-family:var(--mono);color:var(--accent);font-size:11px">Button/Primary/Default · Button/Primary/Hover · Button/Primary/Disabled</span></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Tokens de color</div>
+    <div class="table-wrap"><table>
+      <tr><th>Categoría</th><th>Token</th><th>Uso</th></tr>
+      <tr><td>Brand</td><td class="mono">color/brand/primary<br>color/brand/secondary</td><td class="muted">Identidad principal</td></tr>
+      <tr><td>Feedback</td><td class="mono">color/feedback/success<br>color/feedback/error<br>color/feedback/warning</td><td class="muted">Estados del sistema</td></tr>
+      <tr><td>Texto</td><td class="mono">color/text/primary<br>color/text/secondary<br>color/text/disabled</td><td class="muted">Jerarquía tipográfica</td></tr>
+      <tr><td>Fondo</td><td class="mono">color/bg/base<br>color/bg/surface<br>color/bg/overlay</td><td class="muted">Capas de profundidad</td></tr>
+      <tr><td>Borde</td><td class="mono">color/border/default<br>color/border/focus</td><td class="muted">Divisores y focus rings</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ SIZES ══ -->
+<div id="sizes" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">03 — Sistema</div>
+    <h2>Sizes & Spacing</h2>
+    <div class="section-desc">Todo múltiplo de 4 u 8. Base 8 es el estándar de Apple HIG y Material Design.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Sistema de espaciado</div>
+    <div class="table-wrap"><table>
+      <tr><th>Token</th><th>px</th><th>Uso típico</th></tr>
+      <tr><td class="mono">spacing/2</td><td>2</td><td class="muted">Separación mínima entre elementos muy próximos</td></tr>
+      <tr><td class="mono">spacing/4</td><td>4</td><td class="muted">Gap ícono–texto, padding interno mínimo</td></tr>
+      <tr><td class="mono">spacing/8</td><td>8</td><td class="muted">Padding interno de componentes pequeños</td></tr>
+      <tr><td class="mono">spacing/12</td><td>12</td><td class="muted">Gap entre items en listas, padding de chips</td></tr>
+      <tr><td class="mono">spacing/16</td><td>16</td><td class="muted">Padding estándar de componentes (inputs, cards)</td></tr>
+      <tr><td class="mono">spacing/24</td><td>24</td><td class="muted">Separación entre secciones dentro de un componente</td></tr>
+      <tr><td class="mono">spacing/32</td><td>32</td><td class="muted">Separación entre grupos de contenido</td></tr>
+      <tr><td class="mono">spacing/48</td><td>48</td><td class="muted">Separación entre secciones de pantalla</td></tr>
+      <tr><td class="mono">spacing/64</td><td>64</td><td class="muted">Márgenes de página / hero sections</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Escala tipográfica</div>
+    <div class="table-wrap"><table>
+      <tr><th>Token</th><th>px</th><th>Line-h</th><th>Peso</th><th>Uso</th></tr>
+      <tr><td class="mono">text/display/xl</td><td>48</td><td>56</td><td>700</td><td class="muted">Hero / landing principal</td></tr>
+      <tr><td class="mono">text/heading/xl</td><td>32</td><td>40</td><td>600</td><td class="muted">Título de página</td></tr>
+      <tr><td class="mono">text/heading/lg</td><td>24</td><td>32</td><td>600</td><td class="muted">Sección principal</td></tr>
+      <tr><td class="mono">text/heading/md</td><td>20</td><td>28</td><td>600</td><td class="muted">Subsección</td></tr>
+      <tr><td class="mono">text/heading/sm</td><td>16</td><td>24</td><td>600</td><td class="muted">Card header, modal title</td></tr>
+      <tr><td class="mono">text/body/lg</td><td>16</td><td>24</td><td>400</td><td class="muted">Cuerpo principal</td></tr>
+      <tr><td class="mono">text/body/md</td><td>14</td><td>20</td><td>400</td><td class="muted">Cuerpo secundario</td></tr>
+      <tr><td class="mono">text/body/sm</td><td>12</td><td>16</td><td>400</td><td class="muted">Labels, captions</td></tr>
+      <tr><td class="mono">text/label/md</td><td>14</td><td>20</td><td>500</td><td class="muted">Etiquetas de input, tabs</td></tr>
+      <tr><td class="mono">text/label/sm</td><td>12</td><td>16</td><td>500</td><td class="muted">Badges, chips, overlines</td></tr>
+    </table></div>
+    <div class="note">Mínimo en mobile: 12px. Nunca menos de 11px en ningún elemento.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Tamaños de componentes</div>
+    <div class="table-wrap"><table>
+      <tr><th>Componente</th><th>Height</th><th>Padding H</th><th>Nota</th></tr>
+      <tr><td>Button / lg</td><td>48px</td><td>24px</td><td class="muted">Acción primaria, CTA</td></tr>
+      <tr><td>Button / md</td><td>40px</td><td>16px</td><td class="muted">Estándar</td></tr>
+      <tr><td>Button / sm</td><td>32px</td><td>12px</td><td class="muted">Acciones secundarias</td></tr>
+      <tr><td>Input / lg</td><td>48px</td><td>16px</td><td class="muted">Forms principales</td></tr>
+      <tr><td>Input / md</td><td>40px</td><td>12px</td><td class="muted">Forms estándar</td></tr>
+      <tr><td>Icon / md</td><td>24×24</td><td>—</td><td class="muted">Estándar general</td></tr>
+      <tr><td>Avatar / md</td><td>40×40</td><td>—</td><td class="muted">Perfil, cards</td></tr>
+      <tr><td><strong>Touch target mínimo</strong></td><td><strong>44×44px</strong></td><td>—</td><td class="muted" style="color:var(--accent)">WCAG 2.5.8 / Apple HIG — obligatorio</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ GRID ══ -->
+<div id="grid" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">04 — Sistema</div>
+    <h2>Grid & Breakpoints</h2>
+    <div class="section-desc">Mobile-first. Diseña desde el breakpoint más pequeño hacia arriba.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Breakpoints estándar</div>
+    <div class="table-wrap"><table>
+      <tr><th>Nombre</th><th>Ancho</th><th>Frame Figma</th><th>Dispositivo</th></tr>
+      <tr><td><span class="tag tag-blue">xs</span></td><td class="mono">320px</td><td class="muted">iPhone SE</td><td class="muted">Móvil pequeño — límite inferior</td></tr>
+      <tr><td><span class="tag tag-blue">sm</span></td><td class="mono">375px</td><td class="muted">iPhone 14</td><td class="muted">Móvil estándar — diseña aquí primero</td></tr>
+      <tr><td><span class="tag tag-blue">md</span></td><td class="mono">768px</td><td class="muted">iPad Mini</td><td class="muted">Tablet portrait</td></tr>
+      <tr><td><span class="tag tag-amber">lg</span></td><td class="mono">1024px</td><td class="muted">iPad Pro / laptop</td><td class="muted">Tablet landscape</td></tr>
+      <tr><td><span class="tag tag-amber">xl</span></td><td class="mono">1280px</td><td class="muted">MacBook 13"</td><td class="muted">Desktop estándar</td></tr>
+      <tr><td><span class="tag tag-amber">2xl</span></td><td class="mono">1440px</td><td class="muted">MacBook 16"</td><td class="muted">Desktop amplio</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Grid por breakpoint</div>
+    <div class="bp-block">
+      <div class="bp-header"><span class="bp-name">Mobile — sm (375px)</span><span class="bp-range">320px – 767px</span></div>
+      <div class="bp-body">
+        <div class="bp-row"><span class="bp-key">Columnas</span><span class="bp-val">4</span></div>
+        <div class="bp-row"><span class="bp-key">Margen lateral</span><span class="bp-val">16px</span></div>
+        <div class="bp-row"><span class="bp-key">Gutter</span><span class="bp-val">16px</span></div>
+        <div class="bp-row"><span class="bp-key">Contenido útil</span><span class="bp-val">343px</span></div>
+        <div class="col-vis" id="vis-m"></div>
+        <div class="note" style="margin-top:10px">Casi todo ocupa 4 col (full width). Excepciones: iconos, badges.</div>
+      </div>
+    </div>
+    <div class="bp-block">
+      <div class="bp-header"><span class="bp-name">Tablet — md (768px)</span><span class="bp-range">768px – 1023px</span></div>
+      <div class="bp-body">
+        <div class="bp-row"><span class="bp-key">Columnas</span><span class="bp-val">8</span></div>
+        <div class="bp-row"><span class="bp-key">Margen lateral</span><span class="bp-val">24px</span></div>
+        <div class="bp-row"><span class="bp-key">Gutter</span><span class="bp-val">16px</span></div>
+        <div class="bp-row"><span class="bp-key">Contenido útil</span><span class="bp-val">720px</span></div>
+        <div class="col-vis" id="vis-t"></div>
+        <div class="note" style="margin-top:10px">Nav lateral + contenido: 2+6. Formularios: 6 col centradas.</div>
+      </div>
+    </div>
+    <div class="bp-block">
+      <div class="bp-header"><span class="bp-name">Desktop — xl (1280px)</span><span class="bp-range">1024px – 1440px+</span></div>
+      <div class="bp-body">
+        <div class="bp-row"><span class="bp-key">Columnas</span><span class="bp-val">12</span></div>
+        <div class="bp-row"><span class="bp-key">Margen lateral</span><span class="bp-val">40px</span></div>
+        <div class="bp-row"><span class="bp-key">Gutter</span><span class="bp-val">24px</span></div>
+        <div class="bp-row"><span class="bp-key">Max-width</span><span class="bp-val">1200px centrado</span></div>
+        <div class="col-vis" id="vis-d"></div>
+        <div class="note" style="margin-top:10px">Sidebar+contenido: 3+9. Cards ×3: 4 col c/u. Formularios: 6 col (offset 3).</div>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-title">Layouts comunes</div>
+    <div class="table-wrap"><table>
+      <tr><th>Patrón</th><th>Mobile (4)</th><th>Tablet (8)</th><th>Desktop (12)</th></tr>
+      <tr><td>Full width</td><td class="mono">4/4</td><td class="mono">8/8</td><td class="mono">12/12</td></tr>
+      <tr><td>Contenido centrado</td><td class="mono">4/4</td><td class="mono">6/8</td><td class="mono">8/12</td></tr>
+      <tr><td>Sidebar + contenido</td><td class="muted">Stack vertical</td><td class="mono">2 + 6</td><td class="mono">3 + 9</td></tr>
+      <tr><td>Cards × 2</td><td class="muted">Stack</td><td class="mono">4 + 4</td><td class="mono">6 + 6</td></tr>
+      <tr><td>Cards × 3</td><td class="muted">Stack</td><td class="muted">Stack o 4+4</td><td class="mono">4 + 4 + 4</td></tr>
+      <tr><td>Cards × 4</td><td class="muted">Stack</td><td class="mono">4+4 (2 filas)</td><td class="mono">3+3+3+3</td></tr>
+      <tr><td>Formulario</td><td class="mono">4/4</td><td class="mono">6/8 centrado</td><td class="mono">6/12 (offset 3)</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Configuración en Figma</div>
+    <div class="grid3">
+      <div class="card-block"><div class="card-label">Mobile</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:6px;line-height:1.8">Type: Column<br>Count: 4<br>Margin: 16<br>Gutter: 16</div></div>
+      <div class="card-block"><div class="card-label">Tablet</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:6px;line-height:1.8">Type: Column<br>Count: 8<br>Margin: 24<br>Gutter: 16</div></div>
+      <div class="card-block"><div class="card-label">Desktop</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:6px;line-height:1.8">Type: Column<br>Count: 12<br>Margin: 40<br>Gutter: 24</div></div>
+    </div>
+    <div class="note" style="margin-top:8px">Atajo en Figma: <span style="font-family:var(--mono);color:var(--accent);font-size:11px">Ctrl/Cmd + Shift + 4</span> para ver/ocultar el grid.</div>
+  </div>
+</div>
+
+<!-- ══ MOTION ══ -->
+<div id="motion" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">05 — Sistema</div>
+    <h2>Motion Tokens</h2>
+    <div class="section-desc">El movimiento tiene propósito. No decora — informa.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Principio base</div>
+    <div class="highlight"><div class="highlight-rule">El motion debe comunicar: cambio de estado, jerarquía, origen/destino, feedback de acción.</div><div class="note">Si una animación no comunica algo útil → quítala.</div></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Tokens de duración</div>
+    <div class="table-wrap"><table>
+      <tr><th>Token</th><th>ms</th><th>Cuándo usar</th></tr>
+      <tr><td class="mono">duration/instant</td><td>0</td><td class="muted">Cambios sin transición</td></tr>
+      <tr><td class="mono">duration/fast-01</td><td>70</td><td class="muted">Micro-feedback: ripple, highlight, hover de ícono</td></tr>
+      <tr><td class="mono">duration/fast-02</td><td>110</td><td class="muted">Hover state de botón, focus ring appearance</td></tr>
+      <tr><td class="mono">duration/moderate-01</td><td>150</td><td class="muted">Fade de tooltip, aparición de dropdown pequeño</td></tr>
+      <tr><td class="mono">duration/moderate-02</td><td>240</td><td class="muted">Expansión de accordion, slide de panel pequeño</td></tr>
+      <tr><td class="mono">duration/slow-01</td><td>300</td><td class="muted">Modal enter/exit, sidebar open, page transition</td></tr>
+      <tr><td class="mono">duration/slow-02</td><td>400</td><td class="muted">Sheet completo, drawer, overlay de pantalla</td></tr>
+      <tr><td class="mono">duration/slow-03</td><td>500+</td><td class="muted">Onboarding ilustrado, animación de marca</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Tokens de easing</div>
+    <div class="motion-group">
+      <div class="motion-group-header">Standard</div>
+      <div class="motion-row"><span class="motion-label">easing/standard</span><span class="motion-val">cubic-bezier(0.2, 0, 0, 1)</span><span class="motion-use">Default para la mayoría de casos.</span></div>
+      <div class="motion-row"><span class="motion-label">easing/standard-decel</span><span class="motion-val">cubic-bezier(0, 0, 0, 1)</span><span class="motion-use">Elementos que entran → desaceleran al llegar (sheet, modal enter).</span></div>
+      <div class="motion-row"><span class="motion-label">easing/standard-accel</span><span class="motion-val">cubic-bezier(0.3, 0, 1, 1)</span><span class="motion-use">Elementos que salen → aceleran al irse (modal exit).</span></div>
+    </div>
+    <div class="motion-group">
+      <div class="motion-group-header">Expressive</div>
+      <div class="motion-row"><span class="motion-label">easing/expressive</span><span class="motion-val">cubic-bezier(0.4, 0.14, 0.3, 1)</span><span class="motion-use">Transiciones de página, hero animations.</span></div>
+      <div class="motion-row"><span class="motion-label">easing/spring</span><span class="motion-val">cubic-bezier(0.34, 1.56, 0.64, 1)</span><span class="motion-use">Aparición con rebote suave. Nunca en exit.</span></div>
+    </div>
+    <div class="motion-group">
+      <div class="motion-group-header">Linear</div>
+      <div class="motion-row"><span class="motion-label">easing/linear</span><span class="motion-val">cubic-bezier(0, 0, 1, 1)</span><span class="motion-use">Loaders, spinners, progress bars.</span></div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-title">Combinaciones por caso</div>
+    <div class="table-wrap"><table>
+      <tr><th>Caso</th><th>Duración</th><th>Easing</th></tr>
+      <tr><td>Hover de botón</td><td class="mono">110ms</td><td class="mono">standard</td></tr>
+      <tr><td>Focus ring</td><td class="mono">110ms</td><td class="mono">standard</td></tr>
+      <tr><td>Tooltip aparece / desaparece</td><td class="mono">150ms / 110ms</td><td class="mono">standard-decel / accel</td></tr>
+      <tr><td>Dropdown abre / cierra</td><td class="mono">150ms / 110ms</td><td class="mono">standard-decel / accel</td></tr>
+      <tr><td>Modal entra / sale</td><td class="mono">300ms / 240ms</td><td class="mono">standard-decel / accel</td></tr>
+      <tr><td>Sidebar / drawer abre</td><td class="mono">300ms</td><td class="mono">standard-decel</td></tr>
+      <tr><td>Toast / notificación</td><td class="mono">240ms / 300ms</td><td class="mono">spring / standard-accel</td></tr>
+      <tr><td>Skeleton loader</td><td class="mono">1500ms loop</td><td class="mono">linear</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Accesibilidad</div>
+    <div class="highlight">
+      <div class="highlight-rule">WCAG 2.3.3 — prefers-reduced-motion</div>
+      <div class="note" style="margin-top:8px">En código: <span style="font-family:var(--mono);color:var(--accent);font-size:11px">@media (prefers-reduced-motion: reduce)</span> → eliminar o reducir transiciones.<br><br>En Figma: documenta en el handoff qué animaciones deben desactivarse. Aplica a: parallax, auto-play, animaciones de bucle, transiciones de página agresivas.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ COMPONENTS ══ -->
+<div id="components" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">06 — Componentes</div>
+    <h2>UI Components</h2>
+    <div class="section-desc">Todos los componentes del sistema con variantes y estados. Cada uno respeta los tokens definidos.</div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="block">
+    <div class="block-title">Botones — variantes</div>
+    <div style="display:flex;gap:.85rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem">
+      <button style="display:inline-flex;align-items:center;justify-content:center;padding:.65rem 1.4rem;font-size:13px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;border:none;cursor:pointer;background:var(--text);color:var(--bg);transition:all .25s cubic-bezier(.34,1.56,.64,1)">Primario</button>
+      <button style="display:inline-flex;align-items:center;justify-content:center;padding:.65rem 1.4rem;font-size:13px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;cursor:pointer;background:var(--surface2);color:var(--text2);border:0.5px solid var(--border2)">Secundario</button>
+      <button style="display:inline-flex;align-items:center;justify-content:center;padding:.65rem 1.4rem;font-size:13px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;border:none;cursor:pointer;background:var(--accent);color:var(--accent-dark)">Acento</button>
+      <button style="display:inline-flex;align-items:center;justify-content:center;padding:.65rem 1.4rem;font-size:13px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;cursor:pointer;background:var(--error-bg);color:var(--error-text);border:0.5px solid rgba(201,127,125,0.25)">Destructivo</button>
+    </div>
+    <div style="display:flex;gap:.85rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem">
+      <button style="display:inline-flex;align-items:center;padding:.38rem 1rem;font-size:12px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;border:none;cursor:pointer;background:var(--text);color:var(--bg)">Small</button>
+      <button style="display:inline-flex;align-items:center;padding:.65rem 1.4rem;font-size:13px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;border:none;cursor:pointer;background:var(--text);color:var(--bg)">Default</button>
+      <button style="display:inline-flex;align-items:center;padding:.85rem 1.9rem;font-size:15px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;border:none;cursor:pointer;background:var(--text);color:var(--bg)">Large</button>
+      <button style="display:inline-flex;align-items:center;justify-content:center;padding:.65rem;width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;background:var(--text);color:var(--bg)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <button style="display:inline-flex;align-items:center;padding:.65rem 1.4rem;font-size:13px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;border:none;cursor:not-allowed;background:var(--text);color:var(--bg);opacity:.35">Disabled</button>
+    </div>
+    <div class="table-wrap"><table>
+      <tr><th>Variante</th><th>Cuándo usar</th><th>Token background</th></tr>
+      <tr><td>Primario</td><td class="muted">Acción principal, CTA único por pantalla</td><td class="mono">--text</td></tr>
+      <tr><td>Secundario</td><td class="muted">Acción complementaria, cancelar</td><td class="mono">--surface2 + --border2</td></tr>
+      <tr><td>Acento</td><td class="muted">Acción de marca, énfasis visual</td><td class="mono">--accent</td></tr>
+      <tr><td>Destructivo</td><td class="muted">Eliminar, acción irreversible</td><td class="mono">--error-bg</td></tr>
+    </table></div>
+  </div>
+
+  <!-- INPUTS -->
+  <div class="block">
+    <div class="block-title">Inputs y estados</div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+      <div style="display:flex;flex-direction:column;gap:.4rem;min-width:200px">
+        <label style="font-size:11.5px;font-weight:500;color:var(--text)">Email</label>
+        <input type="email" placeholder="hola@brenda.mx" style="width:100%;padding:.58rem .85rem;background:var(--surface2);border:0.5px solid var(--border2);border-radius:10px;font-family:'Poppins',sans-serif;font-size:13px;color:var(--text);outline:none;transition:all .2s">
+        <span style="font-size:11px;color:var(--text2)">Estado default</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;min-width:200px">
+        <label style="font-size:11.5px;font-weight:500;color:var(--text)">Nombre</label>
+        <input type="text" value="Brenda" style="width:100%;padding:.58rem .85rem;background:var(--surface2);border:0.5px solid var(--text2);border-radius:10px;font-family:'Poppins',sans-serif;font-size:13px;color:var(--text);outline:none;box-shadow:0 0 0 3px rgba(82,93,105,0.1)">
+        <span style="font-size:11px;color:var(--text2)">Estado focused</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;min-width:200px">
+        <label style="font-size:11.5px;font-weight:500;color:var(--text)">Email</label>
+        <input type="email" value="brenda@" style="width:100%;padding:.58rem .85rem;background:var(--error-bg);border:0.5px solid var(--error);border-radius:10px;font-family:'Poppins',sans-serif;font-size:13px;color:var(--text);outline:none">
+        <span style="font-size:11px;color:var(--error-text);display:flex;align-items:center;gap:.3rem">⚠ Email inválido</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;min-width:200px">
+        <label style="font-size:11.5px;font-weight:500;color:var(--text)">Usuario</label>
+        <input type="text" value="@brenda_vega" style="width:100%;padding:.58rem .85rem;background:var(--success-bg);border:0.5px solid var(--success);border-radius:10px;font-family:'Poppins',sans-serif;font-size:13px;color:var(--text);outline:none">
+        <span style="font-size:11px;color:var(--success-text);display:flex;align-items:center;gap:.3rem">✓ Disponible</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHIPS & BADGES -->
+  <div class="block">
+    <div class="block-title">Chips, pills y badges</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
+      <span style="display:inline-flex;align-items:center;font-size:12px;border-radius:100px;padding:.26rem .8rem;font-weight:500;background:var(--surface2);color:var(--text2);border:0.5px solid var(--border2)">Default</span>
+      <span style="display:inline-flex;align-items:center;font-size:12px;border-radius:100px;padding:.26rem .8rem;font-weight:500;background:var(--accent);color:var(--accent-dark);border:0.5px solid transparent">Acento</span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;font-size:12px;border-radius:100px;padding:.26rem .8rem;font-weight:500;background:var(--success-bg);color:var(--success-text);border:0.5px solid rgba(122,173,122,0.25)"><span style="width:6px;height:6px;border-radius:50%;background:var(--success);display:inline-block"></span>Disponible</span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;font-size:12px;border-radius:100px;padding:.26rem .8rem;font-weight:500;background:var(--warning-bg);color:var(--warning-text);border:0.5px solid rgba(229,185,122,0.25)"><span style="width:6px;height:6px;border-radius:50%;background:var(--warning);display:inline-block"></span>En pausa</span>
+      <span style="display:inline-flex;align-items:center;gap:.3rem;font-size:12px;border-radius:100px;padding:.26rem .8rem;font-weight:500;background:var(--error-bg);color:var(--error-text);border:0.5px solid rgba(201,127,125,0.25)"><span style="width:6px;height:6px;border-radius:50%;background:var(--error);display:inline-block"></span>No disponible</span>
+    </div>
+    <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.75rem">
+      <span style="font-size:11px;background:var(--surface2);color:var(--text2);padding:.18rem .65rem;border-radius:100px;border:0.5px solid var(--border2)">Figma</span>
+      <span style="font-size:11px;background:var(--surface2);color:var(--text2);padding:.18rem .65rem;border-radius:100px;border:0.5px solid var(--border2)">Notion</span>
+      <span style="font-size:11px;background:var(--surface2);color:var(--text2);padding:.18rem .65rem;border-radius:100px;border:0.5px solid var(--border2)">Design Tokens</span>
+      <span style="font-size:11px;background:var(--surface2);color:var(--text2);padding:.18rem .65rem;border-radius:100px;border:0.5px solid var(--border2)">Web3</span>
+      <span style="font-size:11px;background:var(--surface2);color:var(--text2);padding:.18rem .65rem;border-radius:100px;border:0.5px solid var(--border2)">Dark/Light mode</span>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="block">
+    <div class="block-title">Cards</div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start">
+      <div style="border:0.5px solid var(--border2);border-radius:18px;padding:1.4rem;background:var(--surface);max-width:220px;transition:all .25s">
+        <div style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:.25rem">Card default</div>
+        <div style="font-size:11.5px;color:var(--text2);margin-bottom:.85rem">Con footer y acción</div>
+        <div style="font-size:12.5px;color:var(--text2);line-height:1.7">Contenedor base con fondo translúcido.</div>
+        <div style="margin-top:1rem;padding-top:.75rem;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;color:var(--text2)">Caso 01</span>
+          <button style="padding:.38rem 1rem;font-size:12px;font-family:'Poppins',sans-serif;font-weight:500;border-radius:100px;cursor:pointer;background:var(--surface2);color:var(--text2);border:0.5px solid var(--border2)">Ver →</button>
+        </div>
+      </div>
+      <div style="border:0.5px solid var(--accent);border-radius:18px;padding:1.4rem;background:var(--accent-tint);max-width:220px">
+        <div style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:.25rem">Card accent</div>
+        <div style="font-size:11.5px;color:var(--text2);margin-bottom:.85rem">Borde y tinte de acento</div>
+        <div style="font-size:12.5px;color:var(--text2);line-height:1.7">Para destacar proyectos o contenido prioritario.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.6rem">
+        <div style="background:var(--surface2);border-radius:12px;padding:1rem;border:0.5px solid var(--border)">
+          <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.3rem">Card flat</div>
+          <div style="font-size:12px;color:var(--text2)">Sin elevación — contextos secundarios.</div>
+        </div>
+        <div style="border:0.5px solid var(--border2);border-radius:14px;padding:1rem;background:var(--surface);display:flex;align-items:center;gap:.75rem;max-width:220px">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;color:var(--accent-dark);flex-shrink:0">BV</div>
+          <div><div style="font-size:13px;font-weight:500;color:var(--text)">Brenda Vega</div><div style="font-size:11.5px;color:var(--text2)">UI Designer</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="block">
+    <div class="block-title">Navigation</div>
+    <div style="display:flex;flex-direction:column;gap:1.25rem">
+      <div>
+        <div style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;font-weight:600">Nav pill</div>
+        <div style="display:flex;background:var(--surface2);backdrop-filter:blur(20px);border:0.5px solid var(--border2);border-radius:100px;padding:4px;gap:2px;width:fit-content">
+          <div style="padding:.38rem 1rem;border-radius:100px;font-size:12.5px;background:var(--text);color:var(--bg);font-weight:500;cursor:pointer">About</div>
+          <div style="padding:.38rem 1rem;border-radius:100px;font-size:12.5px;color:var(--text2);cursor:pointer">Proyectos</div>
+          <div style="padding:.38rem 1rem;border-radius:100px;font-size:12.5px;color:var(--text2);cursor:pointer">Skills</div>
+          <div style="padding:.38rem 1rem;border-radius:100px;font-size:12.5px;color:var(--text2);cursor:pointer">Contacto</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;font-weight:600">Tabs</div>
+        <div style="display:flex;border-bottom:0.5px solid var(--border2)">
+          <div style="padding:.6rem 1.25rem;font-size:13px;color:var(--text);border-bottom:2px solid var(--text);margin-bottom:-0.5px;font-weight:500;cursor:pointer">Todos</div>
+          <div style="padding:.6rem 1.25rem;font-size:13px;color:var(--text2);border-bottom:2px solid transparent;cursor:pointer">UI Design</div>
+          <div style="padding:.6rem 1.25rem;font-size:13px;color:var(--text2);border-bottom:2px solid transparent;cursor:pointer">Web3</div>
+          <div style="padding:.6rem 1.25rem;font-size:13px;color:var(--text2);border-bottom:2px solid transparent;cursor:pointer">Fintech</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOASTS & FEEDBACK -->
+  <div class="block">
+    <div class="block-title">Notificaciones y toasts</div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+      <div style="display:flex;align-items:flex-start;gap:.75rem;padding:.85rem 1rem;border-radius:12px;background:var(--surface2);border:0.5px solid rgba(122,173,122,0.4);max-width:280px;box-shadow:0 4px 16px var(--shadow)">
+        <div style="width:18px;height:18px;border-radius:50%;background:var(--success-bg);color:var(--success-text);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;margin-top:1px">✓</div>
+        <div><div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.15rem">Guardado</div><div style="font-size:12px;color:var(--text2);line-height:1.5">Los cambios se guardaron correctamente.</div></div>
+        <span style="margin-left:auto;font-size:14px;color:var(--text2);cursor:pointer;padding:0 .2rem;flex-shrink:0">✕</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:.75rem;padding:.85rem 1rem;border-radius:12px;background:var(--surface2);border:0.5px solid rgba(229,185,122,0.4);max-width:280px;box-shadow:0 4px 16px var(--shadow)">
+        <div style="width:18px;height:18px;border-radius:50%;background:var(--warning-bg);color:var(--warning-text);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;margin-top:1px">!</div>
+        <div><div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.15rem">Sesión por expirar</div><div style="font-size:12px;color:var(--text2);line-height:1.5">Tu sesión expira en 5 minutos.</div></div>
+        <span style="margin-left:auto;font-size:14px;color:var(--text2);cursor:pointer;padding:0 .2rem;flex-shrink:0">✕</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:.75rem;padding:.85rem 1rem;border-radius:12px;background:var(--surface2);border:0.5px solid rgba(201,127,125,0.4);max-width:280px;box-shadow:0 4px 16px var(--shadow)">
+        <div style="width:18px;height:18px;border-radius:50%;background:var(--error-bg);color:var(--error-text);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;margin-top:1px">✕</div>
+        <div><div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.15rem">Error al enviar</div><div style="font-size:12px;color:var(--text2);line-height:1.5">Verifica tu conexión e intenta de nuevo.</div></div>
+        <span style="margin-left:auto;font-size:14px;color:var(--text2);cursor:pointer;padding:0 .2rem;flex-shrink:0">✕</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOGGLES -->
+  <div class="block">
+    <div class="block-title">Toggles, checkboxes y radios</div>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:.75rem">
+        <div style="display:flex;align-items:center;gap:.6rem;cursor:pointer"><div style="width:40px;height:22px;border-radius:100px;border:0.5px solid var(--border2);background:var(--surface2);position:relative"><div style="position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--text2)"></div></div><span style="font-size:13px;color:var(--text)">Desactivado</span></div>
+        <div style="display:flex;align-items:center;gap:.6rem;cursor:pointer"><div style="width:40px;height:22px;border-radius:100px;background:var(--text);position:relative"><div style="position:absolute;top:3px;left:23px;width:14px;height:14px;border-radius:50%;background:var(--bg)"></div></div><span style="font-size:13px;color:var(--text)">Activado</span></div>
+        <div style="display:flex;align-items:center;gap:.6rem;cursor:pointer"><div style="width:40px;height:22px;border-radius:100px;background:var(--accent-dark);position:relative"><div style="position:absolute;top:3px;left:23px;width:14px;height:14px;border-radius:50%;background:#fff"></div></div><span style="font-size:13px;color:var(--text)">Acento</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.75rem">
+        <div style="display:flex;align-items:center;gap:.55rem;cursor:pointer"><div style="width:16px;height:16px;border-radius:4px;border:0.5px solid var(--border2);background:var(--surface2);flex-shrink:0"></div><span style="font-size:13px;color:var(--text)">Sin seleccionar</span></div>
+        <div style="display:flex;align-items:center;gap:.55rem;cursor:pointer"><div style="width:16px;height:16px;border-radius:4px;background:var(--text);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="width:8px;height:5px;border-left:1.5px solid var(--bg);border-bottom:1.5px solid var(--bg);transform:rotate(-45deg) translateY(-1px)"></div></div><span style="font-size:13px;color:var(--text)">Seleccionado</span></div>
+        <div style="display:flex;align-items:center;gap:.55rem;cursor:pointer"><div style="width:16px;height:16px;border-radius:4px;background:var(--text2);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="width:7px;height:1.5px;background:var(--bg);border-radius:2px"></div></div><span style="font-size:13px;color:var(--text)">Indeterminado</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.75rem">
+        <div style="display:flex;align-items:center;gap:.55rem;cursor:pointer"><div style="width:16px;height:16px;border-radius:50%;border:0.5px solid var(--border2);background:var(--surface2);flex-shrink:0"></div><span style="font-size:13px;color:var(--text)">Opción A</span></div>
+        <div style="display:flex;align-items:center;gap:.55rem;cursor:pointer"><div style="width:16px;height:16px;border-radius:50%;border:0.5px solid var(--text);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="width:7px;height:7px;border-radius:50%;background:var(--text)"></div></div><span style="font-size:13px;color:var(--text)">Opción B</span></div>
+        <div style="display:flex;align-items:center;gap:.55rem;cursor:pointer"><div style="width:16px;height:16px;border-radius:50%;border:0.5px solid var(--border2);background:var(--surface2);flex-shrink:0"></div><span style="font-size:13px;color:var(--text)">Opción C</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="block">
+    <div class="block-title">Progress y loaders</div>
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1.25rem">
+      <div style="display:flex;flex-direction:column;gap:.4rem;width:200px">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2)"><span>Figma</span><span>90%</span></div>
+        <div style="height:6px;background:var(--surface2);border-radius:100px;overflow:hidden;border:0.5px solid var(--border)"><div style="height:100%;width:90%;border-radius:100px;background:var(--text)"></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;width:200px">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2)"><span>Design Tokens</span><span>75%</span></div>
+        <div style="height:6px;background:var(--surface2);border-radius:100px;overflow:hidden;border:0.5px solid var(--border)"><div style="height:100%;width:75%;border-radius:100px;background:var(--accent-dark)"></div></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+        <div style="width:24px;height:24px;border:2px solid var(--border2);border-top-color:var(--text2);border-radius:50%;animation:spin .8s linear infinite"></div>
+        <span style="font-size:10px;color:var(--text3)">spinner</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+        <div style="width:24px;height:24px;border:2px solid var(--border2);border-top-color:var(--accent-dark);border-radius:50%;animation:spin .8s linear infinite"></div>
+        <span style="font-size:10px;color:var(--text3)">accent</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.4rem">
+        <div style="width:160px;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--surface2) 25%,var(--surface) 50%,var(--surface2) 75%);background-size:200% 100%;animation:skel 1.4s ease infinite"></div>
+        <div style="width:120px;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--surface2) 25%,var(--surface) 50%,var(--surface2) 75%);background-size:200% 100%;animation:skel 1.4s ease infinite"></div>
+        <div style="width:140px;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--surface2) 25%,var(--surface) 50%,var(--surface2) 75%);background-size:200% 100%;animation:skel 1.4s ease infinite"></div>
+      </div>
+    </div>
+  </div>
+  <style>@keyframes spin{to{transform:rotate(360deg)}} @keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}</style>
+</div>
+
+<!-- ══ ACCESSIBILITY ══ -->
+<div id="accessibility" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">07 — Calidad</div>
+    <h2>WCAG 2.2 / EN 301 549</h2>
+    <div class="section-desc">Estándar técnico EN 301 549, alineado con WCAG 2.2 Nivel AA. Reconocido como ISO/IEC 40500:2025.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Contraste — ratios mínimos</div>
+    <div class="table-wrap"><table>
+      <tr><th>Tipo de elemento</th><th>Criterio</th><th>Ratio AA</th><th>Ratio AAA</th></tr>
+      <tr><td>Texto normal (&lt;18px / &lt;14px bold)</td><td class="mono">1.4.3</td><td><span class="tag tag-blue">4.5:1</span></td><td class="muted">7:1</td></tr>
+      <tr><td>Texto grande (≥18px / ≥14px bold)</td><td class="mono">1.4.3</td><td><span class="tag tag-blue">3:1</span></td><td class="muted">4.5:1</td></tr>
+      <tr><td>Componentes UI (inputs, botones, iconos)</td><td class="mono">1.4.11</td><td><span class="tag tag-blue">3:1</span></td><td class="muted">—</td></tr>
+      <tr><td>Decorativo / sin información</td><td class="mono">—</td><td><span class="tag tag-green">Sin requisito</span></td><td class="muted">—</td></tr>
+    </table></div>
+    <div class="callout"><span class="callout-icon">💡</span><div class="callout-body">Verifica contraste en modo claro <strong>y</strong> oscuro por separado. Plugin recomendado: <strong>Contrast</strong> o <strong>Stark</strong> en Figma.</div></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Touch target — WCAG 2.5.8</div>
+    <div class="highlight">
+      <div class="highlight-rule" style="font-size:28px;font-family:var(--mono);color:var(--accent)">44 × 44 px</div>
+      <div class="note" style="margin-top:8px">Si el elemento visual es más pequeño, amplía el área de toque con padding invisible.<br>Aplica a: botones, links, checkboxes, toggles, iconos interactivos.<br><br>Excepción: targets menores a 24×24px son aceptables si tienen 24px de espacio libre entre ellos.</div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-title">Checklist por componente</div>
+    <div class="table-wrap"><table>
+      <tr><th>Criterio</th><th>WCAG</th><th>Qué revisar en Figma</th></tr>
+      <tr><td>Contraste texto/fondo</td><td class="mono">1.4.3</td><td class="muted">Ratio mínimo 4.5:1 (texto normal)</td></tr>
+      <tr><td>Contraste componentes UI</td><td class="mono">1.4.11</td><td class="muted">Ratio mínimo 3:1 (bordes, iconos funcionales)</td></tr>
+      <tr><td>Foco visible</td><td class="mono">2.4.11</td><td class="muted">Focus ring mínimo 2px, contraste 3:1</td></tr>
+      <tr><td>No solo color</td><td class="mono">1.4.1</td><td class="muted">Error/success → color + icono + texto</td></tr>
+      <tr><td>Touch target</td><td class="mono">2.5.8</td><td class="muted">Mínimo 44×44px en todos los interactivos</td></tr>
+      <tr><td>Texto alternativo</td><td class="mono">1.1.1</td><td class="muted">Anotar en descripción de capa o en handoff</td></tr>
+      <tr><td>Orden de lectura</td><td class="mono">1.3.2</td><td class="muted">Capas en orden lógico top→bottom en panel</td></tr>
+      <tr><td>Etiquetas de formulario</td><td class="mono">1.3.1</td><td class="muted">Label siempre visible, no solo placeholder</td></tr>
+      <tr><td>Motion reducido</td><td class="mono">2.3.3</td><td class="muted">Documentar en handoff qué animaciones desactivar</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Regla de error</div>
+    <div class="highlight">
+      <div class="highlight-rule">Error = color rojo + ícono + texto descriptivo</div>
+      <div class="note">WCAG 1.4.1: nunca dependas solo del color para comunicar un error. Un usuario con deuteranopia no lo detectará.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ UI PRINCIPLES ══ -->
+<div id="ui" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">08 — Calidad</div>
+    <h2>UI Principles & Heurísticas</h2>
+    <div class="section-desc">Referencia rápida. Consulta antes de tomar decisiones de diseño.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">7 principios UI</div>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Principio</th><th>Aplicación práctica</th></tr>
+      <tr><td>1</td><td><strong>Jerarquía</strong></td><td class="muted">Tamaño, peso y contraste guían la atención. Lo importante va primero y más grande.</td></tr>
+      <tr><td>2</td><td><strong>Divulgación progresiva</strong></td><td class="muted">No muestres todo a la vez. Revela información conforme el usuario avanza.</td></tr>
+      <tr><td>3</td><td><strong>Consistencia</strong></td><td class="muted">Mismo componente → mismo comportamiento en toda la app.</td></tr>
+      <tr><td>4</td><td><strong>Contraste</strong></td><td class="muted">Usa contraste alto para lo crítico, bajo para lo secundario. Nunca al revés.</td></tr>
+      <tr><td>5</td><td><strong>Accesibilidad</strong></td><td class="muted">WCAG 2.2 AA mínimo. Diseña para todos desde el inicio, no como parche final.</td></tr>
+      <tr><td>6</td><td><strong>Proximidad</strong></td><td class="muted">Lo relacionado va junto. La distancia entre elementos comunica relación.</td></tr>
+      <tr><td>7</td><td><strong>Alineación</strong></td><td class="muted">Grid siempre. Sin elementos flotando sin anclaje a la cuadrícula.</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">10 heurísticas de Nielsen</div>
+    <div class="table-wrap"><table>
+      <tr><th>#</th><th>Heurística</th><th>Pregunta de control</th></tr>
+      <tr><td>1</td><td>Visibilidad del estado</td><td class="muted">¿El usuario sabe qué está pasando en todo momento?</td></tr>
+      <tr><td>2</td><td>Match con el mundo real</td><td class="muted">¿Usas lenguaje y metáforas que el usuario conoce?</td></tr>
+      <tr><td>3</td><td>Control y libertad</td><td class="muted">¿Puede deshacer/salir fácilmente?</td></tr>
+      <tr><td>4</td><td>Consistencia</td><td class="muted">¿Mismo elemento = misma función siempre?</td></tr>
+      <tr><td>5</td><td>Prevención de errores</td><td class="muted">¿El diseño evita que el error ocurra antes de corregirlo?</td></tr>
+      <tr><td>6</td><td>Reconocer, no recordar</td><td class="muted">¿El usuario ve las opciones o las tiene que memorizar?</td></tr>
+      <tr><td>7</td><td>Flexibilidad</td><td class="muted">¿Hay atajos para usuarios avanzados?</td></tr>
+      <tr><td>8</td><td>Diseño minimalista</td><td class="muted">¿Cada elemento tiene función? ¿Qué puedo quitar?</td></tr>
+      <tr><td>9</td><td>Mensajes de error claros</td><td class="muted">¿El error explica qué pasó y cómo solucionarlo?</td></tr>
+      <tr><td>10</td><td>Ayuda contextual</td><td class="muted">¿Existe ayuda cuando el usuario la necesita?</td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ VALIDATION ══ -->
+<div id="validation" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">09 — Calidad</div>
+    <h2>Validación</h2>
+    <div class="section-desc">Checklist completo antes de entregar o pasar a desarrollo.</div>
+  </div>
+  <div class="block">
+    <div class="block-title">Checklist pre-entrega</div>
+    <div class="table-wrap"><table>
+      <tr><th>Área</th><th>Pregunta</th></tr>
+      <tr><td><span class="tag tag-blue">Función</span></td><td class="muted">¿Esto facilita la acción del usuario?</td></tr>
+      <tr><td><span class="tag tag-blue">Función</span></td><td class="muted">¿Reduce fricción o la aumenta?</td></tr>
+      <tr><td><span class="tag tag-blue">Función</span></td><td class="muted">¿Hace más claro el valor del producto?</td></tr>
+      <tr><td><span class="tag tag-green">Accesibilidad</span></td><td class="muted">¿Contraste AA verificado en modo claro y oscuro?</td></tr>
+      <tr><td><span class="tag tag-green">Accesibilidad</span></td><td class="muted">¿Error/éxito comunica con color + icono + texto?</td></tr>
+      <tr><td><span class="tag tag-green">Accesibilidad</span></td><td class="muted">¿Touch target 44×44px en todos los interactivos?</td></tr>
+      <tr><td><span class="tag tag-amber">Naming</span></td><td class="muted">¿Todos los layers tienen nombre descriptivo (sin "Frame 34")?</td></tr>
+      <tr><td><span class="tag tag-amber">Sistema</span></td><td class="muted">¿Usé tokens de spacing, color y tipografía del sistema?</td></tr>
+      <tr><td><span class="tag tag-amber">Sistema</span></td><td class="muted">¿Los tamaños son múltiplo de 4 u 8?</td></tr>
+      <tr><td><span class="tag tag-amber">Grid</span></td><td class="muted">¿Los elementos están alineados al grid del breakpoint correcto?</td></tr>
+      <tr><td><span class="tag tag-amber">Motion</span></td><td class="muted">¿Las animaciones tienen duración y easing del token correcto?</td></tr>
+      <tr><td><span class="tag tag-amber">Motion</span></td><td class="muted">¿Documenté qué animaciones desactivar en prefers-reduced-motion?</td></tr>
+      <tr><td><span class="tag tag-red">Decisión</span></td><td class="muted">¿Puedo defender cada elemento visual con una razón concreta?</td></tr>
+    </table></div>
+  </div>
+  <div class="block">
+    <div class="block-title">Métricas de impacto</div>
+    <div class="grid2">
+      <div class="card-block"><div class="card-label">Conversión</div><div class="note" style="margin-top:6px">¿Este cambio reduce pasos hacia el CTA principal?</div></div>
+      <div class="card-block"><div class="card-label">Retención</div><div class="note" style="margin-top:6px">¿El usuario entiende el valor suficientemente rápido para volver?</div></div>
+      <div class="card-block"><div class="card-label">Claridad</div><div class="note" style="margin-top:6px">¿Un usuario nuevo entiende qué hace este elemento sin documentación?</div></div>
+      <div class="card-block"><div class="card-label">Engagement</div><div class="note" style="margin-top:6px">¿El diseño invita a continuar o crea puntos muertos?</div></div>
+    </div>
+    <div class="highlight" style="margin-top:12px">
+      <div class="highlight-rule" style="font-size:13.5px">Sin data real: plantea la hipótesis.</div>
+      <div class="note">"Espero que este cambio mejore [métrica] porque [razón del diseño]." Eso es pensar como Product Designer, no solo como ejecutor visual.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DEV HANDOFF ══ -->
+<div id="devdocs" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">10 — Entrega</div>
+    <h2>Dev Handoff</h2>
+    <div class="section-desc">Documentación para desarrollo. Todo lo que el dev necesita sin preguntar al diseñador.</div>
+  </div>
+
+  <!-- CSS VARIABLES -->
+  <div class="block">
+    <div class="block-title">CSS custom properties — Light/Dark</div>
+    <div class="code-block"><span class="header-line">/* tokens.css — importar antes de cualquier componente */</span>
+<span class="kw">:root</span> {
+  <span class="cm">/* Primitivos */</span>
+  <span class="prop">--prim-rose-100</span>: <span class="str">#f9cccb</span>;
+  <span class="prop">--prim-rose-600</span>: <span class="str">#c97f7d</span>;
+  <span class="prop">--prim-slate-100</span>: <span class="str">#e3e5e4</span>;
+  <span class="prop">--prim-slate-500</span>: <span class="str">#525d69</span>;
+  <span class="prop">--prim-slate-800</span>: <span class="str">#2d2d2d</span>;
+  <span class="prop">--prim-green</span>: <span class="str">#7aad7a</span>;
+  <span class="prop">--prim-amber</span>: <span class="str">#e5b97a</span>;
+}
+
+<span class="kw">[data-theme="light"]</span> {
+  <span class="prop">--bg</span>: <span class="str">#e3e5e4</span>;
+  <span class="prop">--surface</span>: <span class="str">rgba(255,255,255,0.45)</span>;
+  <span class="prop">--surface2</span>: <span class="str">rgba(255,255,255,0.72)</span>;
+  <span class="prop">--text</span>: <span class="str">#2d2d2d</span>;
+  <span class="prop">--text2</span>: <span class="str">#525d69</span>;
+  <span class="prop">--text3</span>: <span class="str">rgba(82,93,105,0.5)</span>;
+  <span class="prop">--accent</span>: <span class="str">#f9cccb</span>;
+  <span class="prop">--accent-dark</span>: <span class="str">#c97f7d</span>;
+  <span class="prop">--border</span>: <span class="str">rgba(45,45,45,0.1)</span>;
+  <span class="prop">--border2</span>: <span class="str">rgba(45,45,45,0.18)</span>;
+  <span class="prop">--success</span>: <span class="str">#7aad7a</span>;
+  <span class="prop">--warning</span>: <span class="str">#e5b97a</span>;
+  <span class="prop">--error</span>: <span class="str">#c97f7d</span>;
+}
+
+<span class="kw">[data-theme="dark"]</span> {
+  <span class="prop">--bg</span>: <span class="str">#0f1010</span>;
+  <span class="prop">--surface</span>: <span class="str">#171918</span>;
+  <span class="prop">--surface2</span>: <span class="str">#1f2120</span>;
+  <span class="prop">--text</span>: <span class="str">#e8e6e3</span>;
+  <span class="prop">--text2</span>: <span class="str">#8a8f8c</span>;
+  <span class="prop">--text3</span>: <span class="str">rgba(138,143,140,0.5)</span>;
+  <span class="prop">--accent</span>: <span class="str">#c97f7d</span>;      <span class="cm">/* invierte roles */</span>
+  <span class="prop">--accent-dark</span>: <span class="str">#f9cccb</span>; <span class="cm">/* invierte roles */</span>
+  <span class="prop">--border</span>: <span class="str">rgba(255,255,255,0.07)</span>;
+  <span class="prop">--border2</span>: <span class="str">rgba(255,255,255,0.13)</span>;
+  <span class="prop">--success</span>: <span class="str">#5a9e5a</span>;
+  <span class="prop">--warning</span>: <span class="str">#c49050</span>;
+  <span class="prop">--error</span>: <span class="str">#c97f7d</span>;
+}</div>
+    <div class="callout"><span class="callout-icon">⚙</span><div class="callout-body"><strong>Aplicar tema:</strong> <span style="font-family:var(--mono);font-size:10.5px">document.documentElement.setAttribute('data-theme', 'dark')</span>. Detectar preferencia del sistema con <span style="font-family:var(--mono);font-size:10.5px">prefers-color-scheme</span> y aplicar como default.</div></div>
+  </div>
+
+  <!-- TIPOGRAFÍA -->
+  <div class="block">
+    <div class="block-title">Tipografía — implementación</div>
+    <div class="code-block"><span class="header-line">/* Google Fonts — añadir en &lt;head&gt; */</span>
+<span class="kw">&lt;link</span> <span class="prop">href</span>=<span class="str">"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"</span> <span class="prop">rel</span>=<span class="str">"stylesheet"</span><span class="kw">&gt;</span>
+
+<span class="cm">/* font-family base */</span>
+<span class="kw">body</span> { <span class="prop">font-family</span>: <span class="str">'Poppins'</span>, sans-serif; }
+<span class="kw">.mono</span> { <span class="prop">font-family</span>: <span class="str">'DM Mono'</span>, monospace; }
+
+<span class="cm">/* Escala — usar estas clases */</span>
+<span class="kw">.text-display</span> { <span class="prop">font-size</span>: <span class="num">48px</span>; <span class="prop">font-weight</span>: <span class="num">700</span>; <span class="prop">letter-spacing</span>: <span class="num">-0.03em</span>; <span class="prop">line-height</span>: <span class="num">1.08</span>; }
+<span class="kw">.text-h1</span>      { <span class="prop">font-size</span>: <span class="num">32px</span>; <span class="prop">font-weight</span>: <span class="num">600</span>; <span class="prop">letter-spacing</span>: <span class="num">-0.02em</span>; <span class="prop">line-height</span>: <span class="num">1.2</span>; }
+<span class="kw">.text-h2</span>      { <span class="prop">font-size</span>: <span class="num">24px</span>; <span class="prop">font-weight</span>: <span class="num">600</span>; <span class="prop">letter-spacing</span>: <span class="num">-0.02em</span>; }
+<span class="kw">.text-body</span>    { <span class="prop">font-size</span>: <span class="num">15px</span>; <span class="prop">font-weight</span>: <span class="num">400</span>; <span class="prop">line-height</span>: <span class="num">1.75</span>; }
+<span class="kw">.text-label</span>   { <span class="prop">font-size</span>: <span class="num">11px</span>; <span class="prop">font-weight</span>: <span class="num">500</span>; <span class="prop">letter-spacing</span>: <span class="num">0.12em</span>; <span class="prop">text-transform</span>: uppercase; }</div>
+  </div>
+
+  <!-- BOTÓN PRIMARIO -->
+  <div class="block">
+    <div class="block-title">Componente — Button</div>
+    <div class="code-block"><span class="header-line">/* Button — todos los estados */</span>
+<span class="kw">.btn</span> {
+  <span class="prop">display</span>: inline-flex;
+  <span class="prop">align-items</span>: center;
+  <span class="prop">justify-content</span>: center;
+  <span class="prop">gap</span>: <span class="num">6px</span>;
+  <span class="prop">padding</span>: <span class="num">10px 22px</span>;         <span class="cm">/* btn-md: h 40px */</span>
+  <span class="prop">font-family</span>: <span class="str">'Poppins'</span>, sans-serif;
+  <span class="prop">font-size</span>: <span class="num">13px</span>;
+  <span class="prop">font-weight</span>: <span class="num">500</span>;
+  <span class="prop">border-radius</span>: <span class="num">9999px</span>;
+  <span class="prop">border</span>: none;
+  <span class="prop">cursor</span>: pointer;
+  <span class="prop">transition</span>: <span class="num">all 250ms cubic-bezier(0.34, 1.56, 0.64, 1)</span>;
+  <span class="prop">min-height</span>: <span class="num">44px</span>;           <span class="cm">/* WCAG 2.5.8 touch target */</span>
+  <span class="prop">min-width</span>: <span class="num">44px</span>;
+}
+<span class="kw">.btn-primary</span> { <span class="prop">background</span>: var(<span class="prop">--text</span>); <span class="prop">color</span>: var(<span class="prop">--bg</span>); }
+<span class="kw">.btn-primary:hover</span> { <span class="prop">transform</span>: scale(1.05) translateY(-1px); <span class="prop">box-shadow</span>: <span class="num">0 6px 20px</span> var(<span class="prop">--shadow</span>); }
+<span class="kw">.btn-primary:active</span> { <span class="prop">transform</span>: scale(0.97); }
+<span class="kw">.btn-primary:disabled</span> { <span class="prop">opacity</span>: <span class="num">.35</span>; <span class="prop">cursor</span>: not-allowed; <span class="prop">pointer-events</span>: none; }
+<span class="kw">.btn-primary:focus-visible</span> { <span class="prop">outline</span>: <span class="num">2px solid</span> var(<span class="prop">--accent-dark</span>); <span class="prop">outline-offset</span>: <span class="num">2px</span>; }
+
+<span class="cm">/* Tamaños */</span>
+<span class="kw">.btn-sm</span> { <span class="prop">padding</span>: <span class="num">6px 16px</span>; <span class="prop">font-size</span>: <span class="num">12px</span>; <span class="prop">min-height</span>: <span class="num">32px</span>; }
+<span class="kw">.btn-lg</span> { <span class="prop">padding</span>: <span class="num">13px 30px</span>; <span class="prop">font-size</span>: <span class="num">15px</span>; <span class="prop">min-height</span>: <span class="num">48px</span>; }</div>
+  </div>
+
+  <!-- INPUT -->
+  <div class="block">
+    <div class="block-title">Componente — Input</div>
+    <div class="code-block"><span class="kw">.input</span> {
+  <span class="prop">width</span>: <span class="num">100%</span>;
+  <span class="prop">padding</span>: <span class="num">9px 14px</span>;          <span class="cm">/* h 40px con border */</span>
+  <span class="prop">background</span>: var(<span class="prop">--surface2</span>);
+  <span class="prop">border</span>: <span class="num">0.5px solid</span> var(<span class="prop">--border2</span>);
+  <span class="prop">border-radius</span>: <span class="num">10px</span>;
+  <span class="prop">font-family</span>: <span class="str">'Poppins'</span>, sans-serif;
+  <span class="prop">font-size</span>: <span class="num">13px</span>;
+  <span class="prop">color</span>: var(<span class="prop">--text</span>);
+  <span class="prop">outline</span>: none;
+  <span class="prop">transition</span>: <span class="num">all 200ms cubic-bezier(0.2, 0, 0, 1)</span>;
+}
+<span class="kw">.input::placeholder</span> { <span class="prop">color</span>: var(<span class="prop">--text3</span>); }
+<span class="kw">.input:focus</span> {
+  <span class="prop">border-color</span>: var(<span class="prop">--text2</span>);
+  <span class="prop">box-shadow</span>: <span class="num">0 0 0 3px rgba(82,93,105,0.1)</span>;
+}
+<span class="kw">.input-error</span> { <span class="prop">border-color</span>: var(<span class="prop">--error</span>) !important; <span class="prop">background</span>: var(<span class="prop">--error-bg</span>) !important; }
+<span class="kw">.input-success</span> { <span class="prop">border-color</span>: var(<span class="prop">--success</span>) !important; <span class="prop">background</span>: var(<span class="prop">--success-bg</span>) !important; }
+<span class="kw">.input:disabled</span> { <span class="prop">opacity</span>: <span class="num">.4</span>; <span class="prop">pointer-events</span>: none; }</div>
+  </div>
+
+  <!-- MOTION -->
+  <div class="block">
+    <div class="block-title">Motion — implementación CSS</div>
+    <div class="code-block"><span class="header-line">/* motion-tokens.css */</span>
+<span class="kw">:root</span> {
+  <span class="prop">--ease-standard</span>:       <span class="num">cubic-bezier(0.2, 0, 0, 1)</span>;
+  <span class="prop">--ease-standard-decel</span>: <span class="num">cubic-bezier(0, 0, 0, 1)</span>;
+  <span class="prop">--ease-standard-accel</span>: <span class="num">cubic-bezier(0.3, 0, 1, 1)</span>;
+  <span class="prop">--ease-spring</span>:         <span class="num">cubic-bezier(0.34, 1.56, 0.64, 1)</span>;
+  <span class="prop">--ease-linear</span>:         <span class="num">cubic-bezier(0, 0, 1, 1)</span>;
+
+  <span class="prop">--dur-fast-01</span>:    <span class="num">70ms</span>;
+  <span class="prop">--dur-fast-02</span>:    <span class="num">110ms</span>;
+  <span class="prop">--dur-mod-01</span>:     <span class="num">150ms</span>;
+  <span class="prop">--dur-mod-02</span>:     <span class="num">240ms</span>;
+  <span class="prop">--dur-slow-01</span>:    <span class="num">300ms</span>;
+  <span class="prop">--dur-slow-02</span>:    <span class="num">400ms</span>;
+}
+
+<span class="cm">/* prefers-reduced-motion */</span>
+<span class="kw">@media (prefers-reduced-motion: reduce)</span> {
+  <span class="kw">*, *::before, *::after</span> {
+    <span class="prop">animation-duration</span>: <span class="num">0.01ms</span> !important;
+    <span class="prop">transition-duration</span>: <span class="num">0.01ms</span> !important;
+  }
+}</div>
+  </div>
+
+  <!-- FIGMA HANDOFF SPECS -->
+  <div class="block">
+    <div class="block-title">Especificaciones de handoff — Figma</div>
+    <div class="table-wrap"><table>
+      <tr><th>Qué documentar</th><th>Dónde en Figma</th><th>Qué incluir</th></tr>
+      <tr><td>Tokens de color</td><td class="mono">Inspect → Fill</td><td class="muted">Nombre del token, no solo el HEX. Ej: <span style="font-family:var(--mono);font-size:10px;color:var(--accent)">--text2</span></td></tr>
+      <tr><td>Espaciado</td><td class="mono">Auto layout → gap/padding</td><td class="muted">Valores múltiplo de 4/8 con token name</td></tr>
+      <tr><td>Estados del componente</td><td class="mono">Variants panel</td><td class="muted">Default, Hover, Focused, Disabled, Error, Loading</td></tr>
+      <tr><td>Motion</td><td class="mono">Prototype → Interaction</td><td class="muted">Duración + easing + qué desactivar en reduced-motion</td></tr>
+      <tr><td>Breakpoints</td><td class="mono">Frame name</td><td class="muted">Nombre incluye breakpoint: <span style="font-family:var(--mono);font-size:10px;color:var(--accent)">Home · Mobile 375</span></td></tr>
+      <tr><td>Alt text de imágenes</td><td class="mono">Layer description</td><td class="muted">Describir el contenido de la imagen en el campo Description</td></tr>
+      <tr><td>Touch target</td><td class="mono">Frame alrededor del ícono</td><td class="muted">44×44px mínimo, con opacity 0 si es invisible</td></tr>
+      <tr><td>Responsive behavior</td><td class="mono">Constraints + Auto layout</td><td class="muted">Documentar en nota adjunta qué colapsa y cómo</td></tr>
+    </table></div>
+  </div>
+
+  <!-- CONVENCIONES DEV -->
+  <div class="block">
+    <div class="block-title">Convenciones de naming — código</div>
+    <div class="table-wrap"><table>
+      <tr><th>Contexto</th><th>Convención</th><th>Ejemplo</th></tr>
+      <tr><td>CSS classes</td><td class="mono">kebab-case</td><td class="muted"><span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">.btn-primary</span> · <span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">.card-accent</span></td></tr>
+      <tr><td>CSS variables</td><td class="mono">--kebab-case</td><td class="muted"><span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">--accent-dark</span> · <span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">--surface2</span></td></tr>
+      <tr><td>React components</td><td class="mono">PascalCase</td><td class="muted"><span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">&lt;Button variant="primary"&gt;</span></td></tr>
+      <tr><td>React props</td><td class="mono">camelCase</td><td class="muted"><span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">isDisabled</span> · <span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">onClick</span></td></tr>
+      <tr><td>Archivos</td><td class="mono">kebab-case</td><td class="muted"><span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">button-primary.css</span> · <span style="font-family:var(--mono);font-size:10.5px;color:var(--accent)">tokens.css</span></td></tr>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ EXPORTACION ══ -->
+<div id="export" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">11 — Entrega</div>
+    <h2>Exportación</h2>
+    <div class="section-desc">Formatos, configuración y convenciones para exportar assets desde Figma.</div>
+  </div>
+
+  <!-- FORMATOS -->
+  <div class="block">
+    <div class="block-title">Formatos por tipo de asset</div>
+    <div class="table-wrap"><table>
+      <tr><th>Asset</th><th>Formato</th><th>Configuración</th><th>Por qué</th></tr>
+      <tr><td>Íconos</td><td><span class="tag tag-blue">SVG</span></td><td class="muted">1× sin rasterizar. Include "id" attr: off</td><td class="muted">Escalable, coloreable con CSS, peso mínimo</td></tr>
+      <tr><td>Ilustraciones</td><td><span class="tag tag-blue">SVG</span></td><td class="muted">Flatten layers. Outline text</td><td class="muted">Sin dependencia de fuentes, escalable</td></tr>
+      <tr><td>Fotos / imágenes</td><td><span class="tag tag-green">WebP</span></td><td class="muted">80% quality · 2× para retina</td><td class="muted">Mejor compresión que PNG/JPG, soporte amplio</td></tr>
+      <tr><td>Fotos fallback</td><td><span class="tag tag-amber">JPG</span></td><td class="muted">85% quality · 2× para retina</td><td class="muted">Para browsers sin soporte WebP</td></tr>
+      <tr><td>Assets con transparencia</td><td><span class="tag tag-amber">PNG</span></td><td class="muted">2× · PNG-8 si es posible</td><td class="muted">Cuando SVG no aplica y se necesita alpha</td></tr>
+      <tr><td>Videos / animaciones</td><td><span class="tag tag-rose">Lottie JSON</span></td><td class="muted">Exportar desde After Effects con plugin</td><td class="muted">Animaciones vectoriales, controlables en código</td></tr>
+      <tr><td>Favicons</td><td><span class="tag tag-blue">SVG</span> + <span class="tag tag-amber">ICO</span></td><td class="muted">SVG moderno + ICO 32×32 fallback</td><td class="muted">SVG para browsers modernos, ICO para IE/legacy</td></tr>
+      <tr><td>OG image</td><td><span class="tag tag-amber">PNG</span></td><td class="muted">1200×630px · 1×</td><td class="muted">Preview en redes sociales y mensajería</td></tr>
+    </table></div>
+  </div>
+
+  <!-- NAMING EXPORTS -->
+  <div class="block">
+    <div class="block-title">Naming de archivos exportados</div>
+    <div class="formula">tipo/nombre--variante@escala.formato</div>
+    <div class="table-wrap"><table>
+      <tr><th>Tipo</th><th>Ejemplo</th><th>Notas</th></tr>
+      <tr><td>Ícono simple</td><td class="mono">icon/arrow-right.svg</td><td class="muted">Siempre kebab-case. Sin mayúsculas.</td></tr>
+      <tr><td>Ícono con variante</td><td class="mono">icon/home--filled.svg<br>icon/home--outlined.svg</td><td class="muted">Double dash separa variante</td></tr>
+      <tr><td>Imagen 1×</td><td class="mono">img/hero-portafolio.webp</td><td class="muted">Sin @1x en el nombre base</td></tr>
+      <tr><td>Imagen 2× (retina)</td><td class="mono">img/hero-portafolio@2x.webp</td><td class="muted">@2x indica densidad de pixel</td></tr>
+      <tr><td>Logo dark/light</td><td class="mono">logo/bv--light.svg<br>logo/bv--dark.svg</td><td class="muted">Siempre exportar ambas versiones</td></tr>
+      <tr><td>Ilustración</td><td class="mono">ilus/empty-state--projects.svg</td><td class="muted">Nombre descriptivo del contexto</td></tr>
+    </table></div>
+  </div>
+
+  <!-- CONFIGURACIÓN FIGMA -->
+  <div class="block">
+    <div class="block-title">Configuración de exportación en Figma</div>
+    <div class="grid2">
+      <div class="card-block">
+        <div class="card-label">SVG icons</div>
+        <div style="font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:8px;line-height:2">Format: SVG<br>Contents: All layers<br>Include "id" attr: ✗<br>Outline text: ✓<br>Simplify stroke: ✓<br>Export: Individual files</div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">WebP images</div>
+        <div style="font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:8px;line-height:2">Format: PNG → convertir<br>Scale: 1× y 2×<br>Nota: Figma no exporta<br>WebP nativo — exportar<br>PNG y convertir con<br>squoosh.app o cwebp</div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">OG image</div>
+        <div style="font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:8px;line-height:2">Frame: 1200×630px<br>Format: PNG<br>Scale: 1×<br>Max file size: 5MB<br>Texto mínimo: 24px</div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">Tokens (Figma Tokens)</div>
+        <div style="font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:8px;line-height:2">Plugin: Tokens Studio<br>Export: JSON<br>Format: Design Token<br>Community (W3C draft)<br>Separar: primitivos /<br>semánticos</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOKENS JSON -->
+  <div class="block">
+    <div class="block-title">Tokens — estructura JSON (Tokens Studio)</div>
+    <div class="code-block"><span class="header-line">/* tokens/global.json — primitivos */</span>
+{
+  <span class="prop">"prim"</span>: {
+    <span class="prop">"rose"</span>: {
+      <span class="prop">"100"</span>: { <span class="prop">"value"</span>: <span class="str">"#f9cccb"</span>, <span class="prop">"type"</span>: <span class="str">"color"</span> },
+      <span class="prop">"600"</span>: { <span class="prop">"value"</span>: <span class="str">"#c97f7d"</span>, <span class="prop">"type"</span>: <span class="str">"color"</span> }
+    },
+    <span class="prop">"slate"</span>: {
+      <span class="prop">"100"</span>: { <span class="prop">"value"</span>: <span class="str">"#e3e5e4"</span>, <span class="prop">"type"</span>: <span class="str">"color"</span> },
+      <span class="prop">"500"</span>: { <span class="prop">"value"</span>: <span class="str">"#525d69"</span>, <span class="prop">"type"</span>: <span class="str">"color"</span> },
+      <span class="prop">"800"</span>: { <span class="prop">"value"</span>: <span class="str">"#2d2d2d"</span>, <span class="prop">"type"</span>: <span class="str">"color"</span> }
+    }
+  }
+}
+
+<span class="header-line">/* tokens/light.json — semánticos light */</span>
+{
+  <span class="prop">"bg"</span>:         { <span class="prop">"value"</span>: <span class="str">"{prim.slate.100}"</span>, <span class="prop">"type"</span>: <span class="str">"color"</span> },
+  <span class="prop">"text"</span>:       { <span class="prop">"value"</span>: <span class="str">"{prim.slate.800}"</span>, <span class="prop">"type"</span>: <span class="str">"color"</span> },
+  <span class="prop">"accent"</span>:     { <span class="prop">"value"</span>: <span class="str">"{prim.rose.100}"</span>,  <span class="prop">"type"</span>: <span class="str">"color"</span> },
+  <span class="prop">"accent-dark"</span>: { <span class="prop">"value"</span>: <span class="str">"{prim.rose.600}"</span>,  <span class="prop">"type"</span>: <span class="str">"color"</span> }
+}
+
+<span class="header-line">/* tokens/dark.json — semánticos dark (invierten roles) */</span>
+{
+  <span class="prop">"bg"</span>:         { <span class="prop">"value"</span>: <span class="str">"#0f1010"</span>,         <span class="prop">"type"</span>: <span class="str">"color"</span> },
+  <span class="prop">"text"</span>:       { <span class="prop">"value"</span>: <span class="str">"#e8e6e3"</span>,         <span class="prop">"type"</span>: <span class="str">"color"</span> },
+  <span class="prop">"accent"</span>:     { <span class="prop">"value"</span>: <span class="str">"{prim.rose.600}"</span>,  <span class="prop">"type"</span>: <span class="str">"color"</span> },
+  <span class="prop">"accent-dark"</span>: { <span class="prop">"value"</span>: <span class="str">"{prim.rose.100}"</span>,  <span class="prop">"type"</span>: <span class="str">"color"</span> }
+}</div>
+  </div>
+
+  <!-- CHECKLIST EXPORT -->
+  <div class="block">
+    <div class="block-title">Checklist antes de exportar</div>
+    <div class="table-wrap"><table>
+      <tr><th>Item</th><th>Verificar</th></tr>
+      <tr><td><span class="tag tag-green">Íconos</span></td><td class="muted">Tamaño en múltiplo de 2 (16, 18, 20, 24, 32). Stroke outlined, no expandido.</td></tr>
+      <tr><td><span class="tag tag-green">Íconos</span></td><td class="muted">Viewport exacto sin espacio extra. Fill none donde corresponde.</td></tr>
+      <tr><td><span class="tag tag-blue">Imágenes</span></td><td class="muted">Exportar 1× y 2×. Convertir a WebP. Verificar peso final.</td></tr>
+      <tr><td><span class="tag tag-blue">Imágenes</span></td><td class="muted">Alt text documentado en la capa de Figma.</td></tr>
+      <tr><td><span class="tag tag-amber">Tokens</span></td><td class="muted">Separar primitivos de semánticos. Verificar referencias no rotas.</td></tr>
+      <tr><td><span class="tag tag-amber">Tokens</span></td><td class="muted">Exportar ambos sets: light.json y dark.json.</td></tr>
+      <tr><td><span class="tag tag-rose">Naming</span></td><td class="muted">kebab-case, sin espacios, sin caracteres especiales.</td></tr>
+      <tr><td><span class="tag tag-rose">Naming</span></td><td class="muted">Variante con double dash: <span style="font-family:var(--mono);font-size:10px">nombre--variante</span>. Densidad con @: <span style="font-family:var(--mono);font-size:10px">nombre@2x</span></td></tr>
+    </table></div>
+  </div>
+
+  <!-- HERRAMIENTAS -->
+  <div class="block">
+    <div class="block-title">Herramientas recomendadas</div>
+    <div class="grid3">
+      <div class="card-block">
+        <div class="card-label">Optimización SVG</div>
+        <div class="note" style="margin-top:6px"><strong style="color:var(--text)">SVGO</strong> — CLI para comprimir. <strong style="color:var(--text)">SVGOMG</strong> — versión web. Reducir paths, eliminar metadata.</div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">Conversión WebP</div>
+        <div class="note" style="margin-top:6px"><strong style="color:var(--text)">squoosh.app</strong> — drag & drop en browser. <strong style="color:var(--text)">cwebp</strong> — CLI. <strong style="color:var(--text)">ImageOptim</strong> — macOS.</div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">Tokens</div>
+        <div class="note" style="margin-top:6px"><strong style="color:var(--text)">Tokens Studio</strong> (Figma plugin) — export JSON. <strong style="color:var(--text)">Style Dictionary</strong> — transform a CSS/iOS/Android.</div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">Contraste</div>
+        <div class="note" style="margin-top:6px"><strong style="color:var(--text)">Contrast</strong> (Figma plugin) — check en selección. <strong style="color:var(--text)">Stark</strong> — simulación de daltonismo. <strong style="color:var(--text)">coolcontrast.com</strong></div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">Inspect</div>
+        <div class="note" style="margin-top:6px"><strong style="color:var(--text)">Figma Dev Mode</strong> — specs automáticas. <strong style="color:var(--text)">Zeplin</strong> — alternativa con anotaciones adicionales.</div>
+      </div>
+      <div class="card-block">
+        <div class="card-label">Lottie</div>
+        <div class="note" style="margin-top:6px"><strong style="color:var(--text)">LottieFiles</strong> — preview y optimización. <strong style="color:var(--text)">lottie-web</strong> — implementación JS. <strong style="color:var(--text)">BodyMovin</strong> — export desde AE.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('btnLight').classList.toggle('active', t === 'light');
+  document.getElementById('btnDark').classList.toggle('active', t === 'dark');
+  localStorage.setItem('dm-theme', t);
+}
+const saved = localStorage.getItem('dm-theme');
+if (saved) setTheme(saved);
+function buildVis(id, cols) {
+  const c = document.getElementById(id);
+  if (!c) return;
+  for (let i = 0; i < cols; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'col-cell';
+    c.appendChild(cell);
+    if (i < cols - 1) {
+      const g = document.createElement('div');
+      g.className = 'col-gutter';
+      c.appendChild(g);
+    }
+  }
+}
+buildVis('vis-m', 4);
+buildVis('vis-t', 8);
+buildVis('vis-d', 12);
+</script>
+</body>
+</html>
