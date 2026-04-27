@@ -1,4 +1,4 @@
-renda Vega — Design Manual v3
+Brenda Vega — Design Manual v3
 
 Sistema de diseño orientado a UI/UX + Product Thinking para creación de interfaces consistentes y escalables.
 
